@@ -18,6 +18,7 @@ type Tool = {
 
 const tools: Tool[] = [
   { name: "OpenAI", category: "AI Models" },
+  { name: "Claude", category: "AI Models" },
   { name: "Gemini", category: "AI Models" },
   { name: "Groq", category: "AI Models" },
   { name: "Ollama", category: "AI Models" },
@@ -25,10 +26,15 @@ const tools: Tool[] = [
   { name: "Dify", category: "No-Code Builders" },
   { name: "Flowise", category: "No-Code Builders" },
   { name: "LangChain", category: "No-Code Builders" },
+  { name: "n8n", category: "No-Code Builders" },
+  { name: "CrewAI", category: "No-Code Builders" },
   { name: "Cursor", category: "Modern AI Dev" },
   { name: "Lovable", category: "Modern AI Dev" },
+  { name: "Bolt.new", category: "Modern AI Dev" },
+  { name: "v0", category: "Modern AI Dev" },
   { name: "Google Colab", category: "Modern AI Dev" },
   { name: "WhatsApp Automation", category: "Automation" },
+  { name: "Make", category: "Automation" },
 ];
 
 const categories: { id: ToolCategory; label: string }[] = [
@@ -62,7 +68,7 @@ export function TechEcosystem() {
     <Section id="ecosystem" index="04" label="Tools">
       <div className="mx-auto max-w-3xl text-center">
         <Reveal>
-          <Eyebrow variant="accent">The Modern AI Toolkit</Eyebrow>
+          <Eyebrow variant="accent">The Modern AI Builder Stack</Eyebrow>
         </Reveal>
         <div className="mt-6">
           <SplitText
@@ -79,8 +85,9 @@ export function TechEcosystem() {
         </div>
         <Reveal delay={0.4}>
           <p className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.6] text-ink-muted">
-            Across 3 days you'll use the same tools modern AI teams ship with —
-            from foundation models to no-code builders and modern AI dev platforms.
+            The exact stack modern AI builders and startups are shipping with in
+            2026 — foundation models, no-code AI infrastructure, multi-agent
+            frameworks and modern AI dev platforms.
           </p>
         </Reveal>
       </div>

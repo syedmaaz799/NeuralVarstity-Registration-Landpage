@@ -169,6 +169,102 @@ function HuggingFaceLogo({ className }: LogoProps) {
   );
 }
 
+function ClaudeLogo({ className }: LogoProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden>
+      <circle cx="12" cy="12" r="9" fill="#D97757" />
+      <g stroke="#fff" strokeWidth="1.6" strokeLinecap="round">
+        <line x1="12" y1="6.5" x2="12" y2="17.5" />
+        <line x1="6.5" y1="12" x2="17.5" y2="12" />
+        <line x1="8" y1="8" x2="16" y2="16" />
+        <line x1="16" y1="8" x2="8" y2="16" />
+      </g>
+      <circle cx="12" cy="12" r="2.2" fill="#D97757" stroke="#fff" strokeWidth="0.8" />
+    </svg>
+  );
+}
+
+function N8nLogo({ className }: LogoProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden>
+      <rect x="3" y="3" width="18" height="18" rx="5" fill="#0B0B0F" />
+      <line x1="6.5" y1="12" x2="17.5" y2="12" stroke="#EA4B71" strokeWidth="1.4" />
+      <circle cx="6.5" cy="12" r="1.9" fill="#EA4B71" />
+      <circle cx="12" cy="12" r="1.9" fill="#EA4B71" />
+      <circle cx="17.5" cy="12" r="1.9" fill="#EA4B71" />
+      <circle cx="12" cy="7.5" r="1.4" fill="#EA4B71" />
+      <circle cx="12" cy="16.5" r="1.4" fill="#EA4B71" />
+      <line x1="12" y1="8.9" x2="12" y2="10.1" stroke="#EA4B71" strokeWidth="1" />
+      <line x1="12" y1="13.9" x2="12" y2="15.1" stroke="#EA4B71" strokeWidth="1" />
+    </svg>
+  );
+}
+
+function CrewAILogo({ className }: LogoProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden>
+      <rect x="3" y="3" width="18" height="18" rx="5" fill="#FF6B35" />
+      <circle cx="12" cy="7.5" r="1.7" fill="#fff" />
+      <circle cx="7.5" cy="15" r="1.7" fill="#fff" />
+      <circle cx="16.5" cy="15" r="1.7" fill="#fff" />
+      <path
+        d="M11 8.8l-2.8 4.7M13 8.8l2.8 4.7M9.2 15h5.6"
+        stroke="#fff"
+        strokeWidth="1.1"
+        strokeLinecap="round"
+        fill="none"
+      />
+    </svg>
+  );
+}
+
+function BoltLogo({ className }: LogoProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden>
+      <rect x="3" y="3" width="18" height="18" rx="5" fill="#0B0B0F" />
+      <path
+        d="M13.4 4.5L6.5 14h3.6l-1 5.5L15.5 10h-3.6l1.5-5.5z"
+        fill="#fff"
+      />
+    </svg>
+  );
+}
+
+function V0Logo({ className }: LogoProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden>
+      <rect x="3" y="3" width="18" height="18" rx="5" fill="#000" />
+      <path
+        d="M6.5 8.5l2.5 6.5 2.5-6.5"
+        stroke="#fff"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      <ellipse cx="16" cy="12" rx="2.1" ry="3.1" stroke="#fff" strokeWidth="1.6" fill="none" />
+    </svg>
+  );
+}
+
+function MakeLogo({ className }: LogoProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden>
+      <defs>
+        <linearGradient id="make-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#C66DF6" />
+          <stop offset="100%" stopColor="#6D28D9" />
+        </linearGradient>
+      </defs>
+      <rect x="3" y="3" width="18" height="18" rx="5" fill="url(#make-grad)" />
+      <path
+        d="M6.5 16.5V7.5h2L12 13l3.5-5.5h2v9h-1.8v-5.6L12 16l-3.7-5.1v5.6H6.5z"
+        fill="#fff"
+      />
+    </svg>
+  );
+}
+
 function WhatsAppLogo({ className }: LogoProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden>
@@ -188,16 +284,22 @@ const logoMap: Record<string, (p: LogoProps) => JSX.Element> = {
   OpenAI: OpenAILogo,
   Gemini: GeminiLogo,
   Groq: GroqLogo,
+  Claude: ClaudeLogo,
   Ollama: OllamaLogo,
+  HuggingFace: HuggingFaceLogo,
   Dify: DifyLogo,
   Flowise: FlowiseLogo,
   LangChain: LangChainLogo,
+  n8n: N8nLogo,
+  CrewAI: CrewAILogo,
   Cursor: CursorLogo,
   Lovable: LovableLogo,
+  "Bolt.new": BoltLogo,
+  v0: V0Logo,
   "Google Colab": ColabLogo,
-  HuggingFace: HuggingFaceLogo,
   WhatsApp: WhatsAppLogo,
   "WhatsApp Automation": WhatsAppLogo,
+  Make: MakeLogo,
 };
 
 export function BrandLogo({ name, className }: { name: string; className?: string }) {

@@ -1,6 +1,6 @@
 # NeuralVarsity — Website Documentation
 
-A complete reference for every text content, visual detail, interaction, effect, animation, and the full project structure of the **NeuralVarsity — Agentic AI Career Masterclass** landing page.
+A complete reference for every text content, visual detail, interaction, effect, animation, and the full project structure of the **NeuralVarsity — Free 3-Day Agentic AI Career Masterclass** landing page (29–31 May 2026, live online, beginner-friendly).
 
 ---
 
@@ -13,14 +13,14 @@ A complete reference for every text content, visual detail, interaction, effect,
 5. [Section 01 — Hero](#5-section-01--hero)
 6. [Section 02 — Trust Strip](#6-section-02--trust-strip)
 7. [Section 03 — Why Agentic AI Matters](#7-section-03--why-agentic-ai-matters)
-8. [Section 04 — Curriculum Journey](#8-section-04--curriculum-journey)
+8. [Section 04 — Curriculum Journey (3 Days)](#8-section-04--curriculum-journey-3-days)
 9. [Section 05 — Tech Ecosystem](#9-section-05--tech-ecosystem)
-10. [Section 06 — Real Workflows](#10-section-06--real-workflows)
+10. [Section 06 — Live Workflows](#10-section-06--live-workflows)
 11. [Section 07 — Outcomes](#11-section-07--outcomes)
-12. [Section 08 — Instructor Authority](#12-section-08--instructor-authority)
-13. [Section 09 — Testimonials](#13-section-09--testimonials)
-14. [Section 10 — Registration](#14-section-10--registration)
-15. [Section 11 — FAQ](#15-section-11--faq)
+12. [Section 08 — Testimonials](#12-section-08--testimonials)
+13. [Section 09 — Registration](#13-section-09--registration)
+14. [Section 10 — FAQ](#14-section-10--faq)
+15. [Section 11 — Feedback & Questions](#15-section-11--feedback--questions)
 16. [Section 12 — Final CTA](#16-section-12--final-cta)
 17. [Footer](#17-footer)
 18. [Reusable UI primitives](#18-reusable-ui-primitives)
@@ -105,14 +105,24 @@ Never gradient. Never glowing. Never outlined. Never transparent. Enforced in `c
 | `display-sm` | `clamp(1.5rem, 3vw, 2.25rem)` | `1.15` | `-0.02em` |
 | `eyebrow` | `0.75rem` | — | `0.18em` |
 
-### Headline pattern
+### Headline patterns
 
-Every section headline uses a **two-line pattern**:
+The page uses **two headline patterns**, both cinematic word-by-word reveals.
+
+**Pattern A — Two-line editorial split** (used in most sections):
 
 1. First line — solid white, normal weight (`SplitText` with word-by-word reveal)
-2. Second line — italic, `text-gradient-soft` (white → near-white), 0.2s delayed reveal
+2. Second line — italic, `text-gradient-soft` (white → near-white), `0.2s` delayed reveal
 
-This is the editorial signature of the page.
+**Pattern B — Three-line cinematic cascade** (used in the Hero):
+
+1. Line 1 — solid white (start at `0s`)
+2. Line 2 — solid white (start at `+0.32s`)
+3. Line 3 — italic, `text-gradient-soft` (start at `+0.62s`)
+
+Each line uses `duration: 1.05s`, `ease: cubic-bezier(0.22, 1, 0.36, 1)`, `blur: 12 → 0`, word stagger `0.09s`.
+
+This pacing is what creates the "popup → settle" cinematic feel on the hero.
 
 ---
 
@@ -181,19 +191,19 @@ The transition between states is `500ms cubic-bezier(0.16, 1, 0.3, 1)`.
 
 ### Contents (left → right)
 
-1. **Wordmark** — `NeuralVarsity` (small) with a white pulse dot + ring on its left
-2. **Inline links** (desktop only, lg breakpoint):
+1. **Wordmark** — the `nv-logo.png` (rendered through `next/image`) followed by the `NeuralVarsity` text (Poppins 800, solid white, small size in the nav)
+2. **Inline links** (desktop only, `lg` breakpoint):
    - `Curriculum`
-   - `Stack`
+   - `Tools`
+   - `Workflows`
    - `Outcomes`
-   - `Instructor`
    - `FAQ`
    - Each pill rounds-full, hover `text-white`
 3. **Cohort indicator** (sm and up):
    - Pulsing accent dot (`animate-ping` on `rgba(77, 163, 255, 0.6)`)
-   - Label: `COHORT 04 · OPEN` (uppercase, tracked `0.18em`)
-4. **CTA button** — `Apply for Cohort` (primary white pill, magnetic strength `0.2`)
-5. **Mobile menu toggle** (lg and below):
+   - Label: `29–31 MAY · FREE` (uppercase, tracked `0.18em`)
+4. **CTA button** — `Register for Free` (primary white pill, magnetic strength `0.2`)
+5. **Mobile menu toggle** (`lg` and below):
    - `36px × 36px` square button, two horizontal bars that morph into an X with `300ms` transitions
 
 ### Mobile menu
@@ -202,7 +212,7 @@ A full-width sheet appears below the nav:
 
 - Entrance: `opacity: 0 → 1`, `y: -8 → 0`, `350ms cubic-bezier(0.16, 1, 0.3, 1)`
 - Backdrop-blur, `#0B0B0F/95`
-- Same links + full-width CTA at bottom
+- Same links + full-width `Register for Free` CTA at bottom
 - Auto-closes on link tap
 
 ---
@@ -227,7 +237,7 @@ A live `<Canvas>` from React Three Fiber rendering `NeuralNetworkCanvas`:
 - Whole field gently sways with `sin(t × 0.04) × 0.05` rotation
 - Fog clamps depth between `6` and `14` to `#0B0B0F` (cinematic depth fog)
 - Camera at `[0, 0, 8]`, FoV `55`
-- DPR clamped `[1, 1.6]` for perf; `dpr: 2` would be heavy
+- DPR clamped `[1, 1.6]` for perf
 
 The 3D layer sits behind a vignette mask (`mask-radial`) at `opacity: 0.8` so it stays atmospheric, never dominant.
 
@@ -240,38 +250,40 @@ The 3D layer sits behind a vignette mask (`mask-radial`) at `opacity: 0.8` so it
 
 ### Text content (top → bottom)
 
-1. **Cohort meta strip** (small chips, animated in with delay `0.1`):
-   - Chip 1: pulsing accent dot + `COHORT 04 · LIVE` (with `animate-ping`)
+1. **Cohort meta strip** (small chips, animated in with delay `0.1s`):
+   - Chip 1: pulsing accent dot + `FREE LIVE MASTERCLASS · 29–31 MAY 2026` (with `animate-ping`)
    - Separator hairline
-   - `STARTS MARCH 04 · 12 WEEKS · LIVE`
+   - `3 DAYS · LIVE ONLINE · BEGINNER FRIENDLY`
    - Separator hairline (lg+)
-   - `APPLICATIONS CLOSE FEB 18` (lg+)
+   - `CERTIFICATE · CAREER COUNSELLING` (lg+)
 
-2. **Headline (display-xl)**:
-   - Line 1 (white): `Become a builder of`
-   - Line 2 (italic, gradient): `agentic AI systems.`
-   - Word-by-word `SplitText` reveal — `y: 110% → 0`, `opacity: 0 → 1`, `blur(8px) → blur(0)`, `0.95s cubic-bezier(0.16, 1, 0.3, 1)`, stagger `0.06s`
+2. **Headline — 3-line cinematic cascade (`display-xl`):**
+   - Line 1 (white): `Build AI Chatbots,` — starts at `0s`
+   - Line 2 (white): `Automations & AI Agents` — starts at `+0.32s`
+   - Line 3 (italic, gradient): `without coding.` — starts at `+0.62s`
 
-3. **Sub-copy** (max-width 640px, `text-ink-muted`, ~17–18px):
-   > A live 12-week masterclass for engineers, PMs and operators. Ship multi-agent orchestration, RAG pipelines, evals and production deployments — alongside the people building AI in industry.
+   Each line word-by-word `SplitText`: `y: 110% → 0`, `opacity: 0 → 1`, `blur(12px) → blur(0)`, `1.05s cubic-bezier(0.22, 1, 0.36, 1)`, stagger `0.09s`.
 
-   Animated in with `y: 18 → 0`, `blur(8px) → blur(0)`, `1s` ease, delay `0.9s`.
+3. **Sub-copy** (max-width 680px, `text-ink-muted`, ~17–18px):
+   > Learn how to build AI chatbots, automations and modern AI workflows using drag-and-drop tools, OpenAI, Gemini, Groq and local AI models — even if you're a complete beginner.
 
-4. **CTA cluster** (delay `1.1s`):
-   - Primary: `Apply for Cohort 04` → scrolls to `#register`, with `ArrowRight` icon that nudges `+2px` on hover
-   - Secondary: `See the curriculum` → scrolls to `#curriculum`
+   Animated in with `y: 18 → 0`, `blur(8px) → blur(0)`, `1s` ease, delay `1.1s`.
+
+4. **CTA cluster** (delay `1.3s`):
+   - Primary: `Register for Free` → scrolls to `#register`, with `ArrowRight` icon that nudges `+2px` on hover
+   - Secondary: `See What You'll Learn` → scrolls to `#curriculum`
    - Both wrapped in `Magnetic` with strength `0.2` and `0.15`
 
-5. **Bottom meta band** (delay `1.3s`) — `border-t border-white/[0.06]`, 4 metrics in a 2×2 / 1×4 grid:
+5. **Bottom meta band** (delay `1.5s`) — `border-t border-white/[0.06]`, 4 stats in a 2×2 / 1×4 grid:
 
-| Metric | Label |
-| ------ | ----- |
-| `12` | WEEKS LIVE |
-| `08` | PRODUCTION PROJECTS |
-| `30+` | HIRING PARTNERS |
-| `1:6` | MENTOR RATIO |
+| Value | Label |
+| ----- | ----- |
+| `3` | DAYS LIVE |
+| `100%` | BEGINNER FRIENDLY |
+| `✓` | CERTIFICATE INCLUDED |
+| `Free` | CAREER COUNSELLING |
 
-6. **Scroll cue** (desktop only, delay `1.6s`):
+6. **Scroll cue** (desktop only, delay `1.8s`):
    - Two `40px` hairlines flanking the word `SCROLL` in uppercase, letter-spacing `0.22em`
 
 ### Hover effects
@@ -293,30 +305,30 @@ File: `components/sections/trust-strip.tsx`
 
 ### Text content
 
-**Eyebrow:** `TRUSTED BY BUILDERS AND OPERATORS FROM`
+**Eyebrow:** `AI TOOLS YOU'LL LEARN OVER 3 DAYS`
 
-**Marquee partners (looping, 3× duplicated):**
-`OpenAI` · `Anthropic` · `Stripe` · `Linear` · `Vercel` · `Notion` · `Ramp` · `Scale`
+**Marquee tools (looping, 3× duplicated):**
+`OpenAI` · `Gemini` · `Groq` · `Ollama` · `Dify` · `Flowise` · `LangChain` · `Cursor` · `Lovable` · `Google Colab` · `HuggingFace` · `WhatsApp Automation`
 
 The marquee uses an infinite `x: 0% → -50%` translation over `40s` linear, masked with `mask-fade-x` so edges fade.
 
-**Metrics grid** (2 × 2 on mobile, 4 × 1 on desktop), inside a single rounded `2xl` panel with hairline dividers:
+**Value cards grid** (2 × 2 on mobile, 4 × 1 on desktop), inside a single rounded `2xl` panel with hairline dividers:
 
 | Value | Label | Sub-label |
 | ----- | ----- | --------- |
-| `94%` | Completion rate | across all live cohorts |
-| `$148K` | Median post-cohort offer | AI / ML engineering roles |
-| `11.4 weeks` | Avg. time to offer | for active job seekers |
-| `1,240+` | Engineers shipped | production AI in 2025 |
+| `100%` | Practical | every session is build-first |
+| `No Code` | No coding required | drag-and-drop AI workflows |
+| `Real` | Build real AI agents | chatbots, automations, agents |
+| `Career` | Career focused | roadmap + free counselling |
 
-Each metric cell:
+Each value cell:
 - Bg `#0B0B0F/60`, padding `24–28px`
 - Display value uses `display` font, `tracking-tightest`
 - Reveals stagger by `0.07s` left → right
 
 ### Effects
 
-- Partner names — slight `text-white` shift on hover, no other effect
+- Tool names — slight `text-white` shift on hover, no other effect
 - Reveals — IntersectionObserver-triggered blur-to-clear, `y: 24 → 0`, `0.9s` ease
 
 ---
@@ -333,21 +345,21 @@ A 12-column editorial split:
 
 ### Text content
 
-**Section index/label** (left, vertical): `02 / WHY NOW`
+**Section index/label:** `02 / WHY NOW`
 
-**Eyebrow (accent):** `WHY AGENTIC AI · WHY NOW`
+**Eyebrow (accent):** `WHY THIS MASTERCLASS · WHY NOW`
 
 **Headline:**
-- Line 1: `The shift from software`
-- Line 2 (italic gradient): `to autonomy.`
+- Line 1: `AI is moving from`
+- Line 2 (italic gradient): `experts to everyone.`
 
 **Supporting copy:**
-> Every major company is rebuilding internal workflows around agents. The next decade of careers will be defined by who can architect this layer — not who can use it.
+> Modern AI tools have removed the coding barrier. Whether you're a student, a non-coder, a working professional or a career switcher — you can now build real AI products and unlock new career paths.
 
 **Market signal pull-quote** (desktop only, parallax-tracked):
-> "By 2027, an estimated **40% of enterprise software** will include autonomous agents as first-class users — not features."
+> "**AI skills are now the #1 in-demand skill** across freelancing platforms, startups and enterprise hiring in 2026."
 >
-> — Industry forecast, AI infra report
+> — Global AI Talent Report
 
 The pull-quote card has a parallax `y` based on scroll progress through the section: it translates from `+60px` to `-60px` as the section scrolls past, using `useScroll + useTransform`.
 
@@ -355,9 +367,9 @@ The pull-quote card has a parallax `y` based on scroll progress through the sect
 
 | # | Title | Body |
 | -- | ----- | ---- |
-| `01` | From copilots to autonomous agents. | AI is no longer a chat interface. It plans, decides and executes long-running work — across tools, data and humans. |
-| `02` | From features to orchestration. | Companies don't need another wrapper. They need engineers who can design multi-agent systems with evals, fallbacks and observability. |
-| `03` | From prompts to production. | The new operator stack is RAG, function calling, vector stores, guardrails, agent graphs and continuous deployment — not prompt hacks. |
+| `01` | From watching AI to building with AI. | You don't need a CS degree to ship modern AI. With drag-and-drop tools and modern AI platforms, anyone can build real chatbots, automations and agents in days — not years. |
+| `02` | From experts only to everyone. | AI used to belong to engineers. Today, students, freelancers, career switchers and working professionals are building production-ready AI workflows using no-code platforms. |
+| `03` | From learning to shipping in 3 days. | Most courses stop at theory. In this 3-day masterclass you'll build AI chatbots, WhatsApp automations and AI agents live — alongside a mentor who guides every step. |
 
 ### Card structure & effects
 
@@ -371,7 +383,7 @@ Each shift card:
 
 ---
 
-## 8. Section 04 — Curriculum Journey
+## 8. Section 04 — Curriculum Journey (3 Days)
 
 File: `components/sections/curriculum.tsx`
 
@@ -383,41 +395,38 @@ A center-aligned headline, then a **vertical zig-zag timeline** with a center ac
 
 **Section index/label:** `03 / CURRICULUM`
 
-**Eyebrow (accent):** `12 WEEKS · LIVE`
+**Eyebrow (accent):** `3 DAYS · LIVE ONLINE · FREE`
 
 **Headline:**
-- Line 1: `A cinematic journey`
-- Line 2 (italic gradient): `from prompt to production.`
+- Line 1: `A 3-day cinematic`
+- Line 2 (italic gradient): `journey into modern AI.`
 
 **Sub-copy:**
-> Each module is a build. Each build is reviewed. By Week 12 you have a production-grade agentic system — and the muscle to ship the next one.
+> Each day is a hands-on build. By the end of Day 3, you'll have built real AI chatbots, automations and agents — and you'll walk away with a clear AI career roadmap.
 
-### Six modules (zig-zag)
+### Three days (zig-zag timeline)
 
-| Week | Phase | Title | Body | Bullets |
-| ---- | ----- | ----- | ---- | ------- |
-| Week 01–02 | Foundations | The agentic mindset | Reasoning, planning, memory, tools. Why agents differ from chat. We rebuild the mental model from first principles — and what production architecture actually looks like. | LLM systems thinking · Reasoning vs retrieval · Tool-use design · Eval-first development |
-| Week 03–04 | Retrieval & memory | Production RAG, vector stores and hybrid retrieval | Build retrieval pipelines that survive real data. Chunking strategies, hybrid search, re-ranking, evals — plus the failure modes nobody tells you about. | Hybrid retrieval (BM25 + dense) · Reranking & MMR · Vector store ops · Retrieval evals |
-| Week 05–06 | Agent orchestration | Multi-agent systems with LangGraph & AutoGen | Design agent graphs, supervisor patterns, tool routers and human-in-the-loop. We architect real workflows used in production by AI-first teams. | LangGraph state machines · Supervisor & ReAct loops · Tool routing & fallbacks · HITL & approvals |
-| Week 07–08 | Operations & evals | Evals, observability and guardrails | If you can't evaluate it, you can't ship it. Build eval harnesses, online metrics, regression suites, tracing — and design guardrails that hold under load. | Eval harnesses · Tracing & telemetry · Guardrails & policy · Cost & latency tuning |
-| Week 09–10 | Deployment | Shipping agents to production | FastAPI services, Docker, AWS, vector infra, queue patterns, async workers — go from notebook to a system real users can depend on. | FastAPI & queues · Docker & AWS deploys · Vector infra at scale · CI/CD for AI systems |
-| Week 11–12 | Capstone | Ship a real agentic product | You'll build, evaluate and demo a production agentic system to a panel of operators from leading AI teams. Portfolio. Hiring intros. Demo Day. | Project shipped publicly · Eval-backed performance · Operator demo panel · Hiring intros |
+| Day | Phase | Title | Body | Bullets |
+| --- | ----- | ----- | ---- | ------- |
+| Day 01 · 29 May | Foundations & AI Tools | **Build AI Chatbots & Use Powerful AI Models** | Start from zero. Learn the modern AI model landscape and build your first AI chatbots using OpenAI, Gemini, Groq and local AI models — all without writing code. | OpenAI API · Gemini API · Groq API · Open-source AI models · Ollama local AI setup · Drag-and-drop chatbot building · No-code AI workflows |
+| Day 02 · 30 May | AI Agents & Automation | **Build AI Agents & Automations** | Move from chatbots to autonomous workflows. Build email automations, WhatsApp automations and multi-step AI agents that work for you, around the clock. | Email automation · WhatsApp automation · AI assistants · Workflow automations · Multi-step AI agents · Productivity systems |
+| Day 03 · 31 May | AI Career & Modern Platforms | **Modern AI Career Tools & Future AI Platforms** | Step into the modern AI builder ecosystem. Ship AI apps with Cursor, Lovable and Google Colab — and finish with a clear AI career roadmap and free counselling. | Cursor AI · Lovable · Google Colab · Modern AI development platforms · AI app building · AI career roadmap · Free career counselling |
 
 ### Timeline effects
 
 - A central vertical line at `left-1/2` (desktop only), `white/[0.06]`, with an accent-colored gradient overlay scaled by scroll progress (`useScroll` → `scaleY: 0 → 1`)
-- Each module card is on alternating sides (odd → left, even → right)
+- Each day card is on alternating sides (odd → left, even → right)
 - Between each card row, on desktop only:
   - A small `12px` dot with white ring + accent inner fill at the timeline level
-  - A massive ghost number (`01–06`) at `text-7xl` in `white/[0.04]` (acts as editorial backdrop)
+  - A massive ghost number (`01–03`) at `text-7xl` in `white/[0.04]` (editorial backdrop)
 
 ### Card structure & effects
 
-Each module card:
+Each day card:
 - Rounded `2xl`, `border-white/[0.06]`
 - Gradient `white/[0.025] → transparent`
 - **Hover:** border to `white/[0.12]`, top-right accent orb (`bg-accent/[0.06]`, `blur-3xl`) fades in over `700ms`
-- Top row: week in mono `11px` (left) + phase chip (right) — phase chip is rounded-full, hairline border, `bg-white/[0.03]`
+- Top row: day in mono `11px` (left) + phase chip (right) — phase chip is rounded-full, hairline border, `bg-white/[0.03]`
 - Title in display, `text-2xl → 28px`
 - Bullets as 2-column list, each with a `1×1 px` accent dot
 - IntersectionObserver reveal, blur-to-clear
@@ -427,6 +436,7 @@ Each module card:
 ## 9. Section 05 — Tech Ecosystem
 
 File: `components/sections/tech-ecosystem.tsx`
+Brand logos: `components/brand/tool-logos.tsx`
 
 ### Layout
 
@@ -434,54 +444,59 @@ File: `components/sections/tech-ecosystem.tsx`
 
 ### Text content
 
-**Section index/label:** `04 / TECH STACK`
+**Section index/label:** `04 / TOOLS`
 
-**Eyebrow (accent):** `THE OPERATING STACK`
+**Eyebrow (accent):** `THE MODERN AI TOOLKIT`
 
 **Headline:**
-- Line 1: `The full agentic AI`
-- Line 2 (italic gradient): `engineering stack.`
+- Line 1: `One constellation.`
+- Line 2 (italic gradient): `Every tool you'll touch.`
 
 **Sub-copy:**
-> Not a logo wall. A constellation of the tools you'll learn, ship and operate — woven into a single coherent stack.
+> Across 3 days you'll use the same tools modern AI teams ship with — from foundation models to no-code builders and modern AI dev platforms.
 
-### The 16 tools, by category
+### The 12 tools, by category
 
 | Category | Tools |
 | -------- | ----- |
-| Languages | `Python`, `SQL` |
-| Models & Frameworks | `TensorFlow`, `PyTorch`, `OpenAI`, `HuggingFace` |
-| Agent Orchestration | `LangChain`, `LangGraph`, `AutoGen`, `Dify`, `Flowise` |
-| Infra & Deploy | `FastAPI`, `Docker`, `AWS` |
-| Data | `Power BI` |
-| Interfaces | `Streamlit` |
+| AI Models | `OpenAI`, `Gemini`, `Groq`, `Ollama`, `HuggingFace` |
+| No-Code AI Builders | `Dify`, `Flowise`, `LangChain` |
+| Modern AI Dev Tools | `Cursor`, `Lovable`, `Google Colab` |
+| AI Automation | `WhatsApp Automation` |
+
+### Brand logos
+
+Each tool has a stylized colorful SVG glyph defined in `components/brand/tool-logos.tsx` and rendered by the `<BrandLogo name="..." />` component. The exact in-brand fills are used (e.g. OpenAI lockup, Gemini gradient, Groq red square, Ollama llama, Dify blue D, Flowise gradient nodes, LangChain teal link, Cursor knife arrow, Lovable pink heart, Colab orange, HuggingFace yellow face, WhatsApp green bubble).
 
 ### Orbit visualization (left)
 
 - An aspect-square container, max `640px`
-- **Three concentric rings** (sizes `42%`, `62%`, `86%`) — `border-white/[0.06]`
+- **Three concentric rings** (sizes `54%`, `74%`, `94%`) — `border-white/[0.06]`
 - Fine grid behind, `mask-radial` to taper
-- A `radial-gradient` accent glow at center (`288 × 288px`, `rgba(77,163,255,0.15) → transparent`)
+- A `radial-gradient` accent glow at center (`288 × 288px`, `rgba(77,163,255,0.18) → transparent`)
 
-**Center core:**
-- A `96 × 96px` circle, `border-white/15`, `bg-[#0B0B0F]/90`, `backdrop-blur`
-- Shadow `0 0 40px rgba(77, 163, 255, 0.25)`
-- Text: `NV` (Poppins 800) + `CORE` (uppercase, 8px tracked `0.22em`)
-- Gently scales `1 → 1.04 → 1` over `6s` easeInOut, infinite
+**Center NV core (logo image, no disc):**
+- A static positioning wrapper holds the core perfectly centered while the inner motion layer scales
+- A `160 × 160px` dashed halo ring (`border-dashed border-white/10`)
+- A `128 × 128px` soft blue radial glow behind the logo (`bg-[radial-gradient(circle,rgba(77,163,255,0.35),transparent_70%)]`, `blur-xl`)
+- The `/nv-logo.png` image rendered through `next/image` at `h-28 × w-28`, `object-contain`
+- A subtle blue drop-shadow on the logo: `drop-shadow(0 0 24px rgba(77, 163, 255, 0.45))`
+- Gently scales `1 → 1.05 → 1` over `6s` easeInOut, infinite
+- **No dark plate, no border, no backdrop blur around the logo** — the logo sits directly on the orbit canvas as the focal point
 
 **Three orbiting rings of tool pills:**
 
 | Ring | Radius | Tools | Direction | Period |
 | ---- | ------ | ----- | --------- | ------ |
-| Inner | 21% | Languages + Models | clockwise | 55s |
-| Middle | 31% | Orchestration | counter-clockwise | 70s |
-| Outer | 43% | Infra + Data + Interfaces | clockwise | 90s |
+| Inner | 27% | AI Models (5 tools) | clockwise | 55s |
+| Middle | 37% | No-Code AI Builders (3 tools) | counter-clockwise | 70s |
+| Outer | 47% | Modern AI Dev Tools + Automation (4 tools) | clockwise | 90s |
 
 Each tool pill counter-rotates at its parent's speed so it stays upright.
 
 **Tool pill design:**
 - Rounded-full, `border-white/[0.08]`, `bg-[#0B0B0F]/90`, `backdrop-blur`
-- Tiny accent dot inside
+- A `14px × 14px` `BrandLogo` glyph inside (the actual tool's logo in its brand color)
 - Default shadow: `0 4px 16px -8px rgba(0,0,0,0.5)`
 
 **Two outermost dashed rings** rotate slightly with scroll progress (0 → 60°) — these are masked with `mask-radial` for a fade.
@@ -490,7 +505,7 @@ Each tool pill counter-rotates at its parent's speed so it stays upright.
 
 For each category:
 - A label in uppercase tracked `0.18em`, separated by hairline borders
-- Tools rendered as `inline-flex` chips, rounded-full, with accent dots
+- Tools rendered as `inline-flex` chips, rounded-full, with their `BrandLogo` glyphs (12 × 12px)
 - Reveals stagger by `0.07s` per category
 
 ### Hover interactions (linked)
@@ -507,7 +522,7 @@ This makes the constellation feel coherent and engineered.
 
 ---
 
-## 10. Section 06 — Real Workflows
+## 10. Section 06 — Live Workflows
 
 File: `components/sections/workflows.tsx`
 
@@ -519,34 +534,34 @@ File: `components/sections/workflows.tsx`
 
 **Section index/label:** `05 / WORKFLOWS`
 
-**Eyebrow (accent):** `REAL WORKFLOWS`
+**Eyebrow (accent):** `LIVE WORKFLOWS`
 
 **Headline:**
-- Line 1: `What you'll`
-- Line 2 (italic gradient): `actually build.`
+- Line 1: `The exact AI workflows`
+- Line 2 (italic gradient): `you'll build live.`
 
 **Sub-copy:**
-> Every project is a working agentic system — designed, evaluated and deployed. These are the patterns we build, ship and tune in cohort.
+> These are real, beginner-friendly AI workflows — chatbots, WhatsApp automations and AI email assistants — that you'll build live during the 3-day masterclass and reuse the same day.
 
 ### Three workflows
 
-#### Workflow 1 — Autonomous research agent
-- Subtitle: `Long-running, multi-source synthesis`
+#### Workflow 1 — AI Chatbot Workflow
+- Subtitle: `Custom AI chatbot, no coding`
 - Description:
-  > A supervisor coordinates a planner, retriever and writer. The agent searches, verifies, summarizes — and produces a structured report with citations.
-- Nodes: `Query (User)` → `Planner (LLM)` → `Retriever (RAG)` → `Verifier (Eval)` → `Writer (LLM)` → `Report (PDF / JSON)`
+  > Build an AI chatbot powered by OpenAI, Gemini or a local model — wired through a drag-and-drop builder, with custom knowledge and a friendly tone.
+- Nodes: `User Message (Chat)` → `Intent (LLM)` → `Knowledge (Docs)` → `OpenAI / Gemini (Model)` → `AI Reply (Chat)`
 
-#### Workflow 2 — Internal operations copilot
-- Subtitle: `Routing, approvals and tool calls`
+#### Workflow 2 — WhatsApp Automation Workflow
+- Subtitle: `Reply, qualify and nurture on WhatsApp`
 - Description:
-  > A router-agent triages internal requests, calls company tools, escalates to humans when needed and records every step for audit and evals.
-- Nodes: `Slack / Email (Trigger)` → `Router agent (Supervisor)` → `CRM Tool (API)` & `Human review (HITL)` → `Action (Resolved)`
+  > Automate WhatsApp conversations end-to-end — auto-reply, qualify leads, send updates and follow up — all without writing a single line of code.
+- Nodes: `WhatsApp In (Trigger)` → `AI Agent (Logic)` → `Google Sheets (Store)` & `Auto Reply (Send)` → `Lead Saved (CRM)`
 
-#### Workflow 3 — Production deployment pipeline
-- Subtitle: `From notebook to live system`
+#### Workflow 3 — AI Email Automation Workflow
+- Subtitle: `Read, summarize and reply to emails`
 - Description:
-  > An eval-gated pipeline: every prompt and graph change is unit-tested, regressed against a golden set, deployed via FastAPI, observed in production.
-- Nodes: `Agent code (Repo)` → `Eval suite (Golden)` → `CI / CD (Docker)` → `FastAPI (Service)` → `Tracing (Telemetry)`
+  > An AI assistant reads incoming emails, classifies them, drafts smart replies and schedules follow-ups — your personal inbox agent, on autopilot.
+- Nodes: `Inbox (Trigger)` → `Classifier (LLM)` → `Summarize (AI)` → `Draft Reply (Compose)` → `Send / Schedule (Outbox)`
 
 ### Left column — picker
 
@@ -577,7 +592,7 @@ A `2xl` panel with:
 | `tool` | `white/10` | `white/[0.02]` | ink |
 | `output` | `white/20` | `white` | `#0B0B0F` (inverted) |
 
-Each pill has a `1.5px` dot, the node label, and a tiny uppercase tag chip (e.g. `LLM`, `RAG`, `HITL`).
+Each pill has a `1.5px` dot, the node label, and a tiny uppercase tag chip (e.g. `LLM`, `Logic`, `AI`).
 
 ### Animated data-flow edges
 
@@ -603,7 +618,7 @@ File: `components/sections/outcomes.tsx`
 
 ### Layout
 
-5 cols left (intro + metrics grid) + 7 cols right (career paths + portfolio cards).
+5 cols left (intro + metrics grid) + 7 cols right (transformations + benefits).
 
 ### Text content
 
@@ -612,120 +627,59 @@ File: `components/sections/outcomes.tsx`
 **Eyebrow (accent):** `OUTCOMES`
 
 **Headline:**
-- Line 1: `A career inflection,`
-- Line 2 (italic gradient): `not a certificate.`
+- Line 1: `What you'll walk away`
+- Line 2 (italic gradient): `with after 3 days.`
 
 **Supporting copy:**
-> We don't measure ourselves by lectures watched. We measure ourselves by what you ship, who hires you, and what you can build six months after graduation.
+> Most courses leave you with notes. You'll leave this masterclass with real AI builds, a career roadmap and the confidence to keep building — even if you've never written code before.
 
 ### Left metric grid (2 × 2, hairlines)
 
 | Value | Label |
 | ----- | ----- |
-| `$148K` | MEDIAN OFFER |
-| `94%` | COMPLETION |
-| `11.4w` | TIME TO OFFER |
-| `30+` | HIRING PARTNERS |
+| `3 Days` | LIVE ONLINE |
+| `100%` | HANDS-ON |
+| `Free` | CAREER COUNSELLING |
+| `✓` | CERTIFICATE |
 
-### Career paths (right top)
+### Transformations (right top)
 
-Header: `CAREER PATHS OUR STUDENTS TAKE`
+Header: `YOUR TRANSFORMATION IN 3 DAYS`
 
 | Title | Range | Description |
 | ----- | ----- | ----------- |
-| AI / ML Engineer | `$140K – $260K` | Ship production agentic systems at AI-first companies. |
-| Founding Engineer · AI | `$170K – $320K + equity` | Architect the agent layer at seed and Series A startups. |
-| Applied AI · PM | `$160K – $240K` | Lead agent product surface area at scale. |
-| AI Solutions Architect | `$180K – $280K` | Design enterprise agentic workflows for Fortune 500 teams. |
+| Learn modern AI tools | OpenAI · Gemini · Groq | Get hands-on with the AI tools used by startups and modern AI teams. |
+| Build your first AI workflows | Live · Step by step | Ship real chatbots, automations and AI agents — built live during the masterclass. |
+| Explore AI career opportunities | Career roadmap | Understand where AI is going and the real paths open to beginners in 2026. |
+| Become AI confident | From watcher to builder | Move from observing AI to actively building with it — no coding required. |
+| Earn a certificate | Completion · NeuralVarsity | Get an official certificate of completion to showcase on your profile and CV. |
+| Free career counselling | 1:1 guidance | Get personalized career guidance from our team after the masterclass — completely free. |
 
 Each row:
 - `2xl` rounded, hairline border, gradient `white/[0.02] → transparent`
 - Title in display, description in `ink-muted`
-- Right side: salary range in mono + a `36 × 36px` round button with `ArrowUpRight` icon
+- Right side: meta in mono + a `36 × 36px` round button with `ArrowUpRight` icon
 - **Hover:** border to `white/[0.14]`, background to `white/[0.04]`, the arrow button shifts `+2px` right, lightens, the row gets a subtle lift feel
 - Staggered entrance, `0.08s` per item
 
-### What you walk away with (right bottom)
+### Included for every registered learner (right bottom)
 
-Header: `WHAT YOU WALK AWAY WITH`
+Header: `INCLUDED FOR EVERY REGISTERED LEARNER`
 
 A 2-column grid of editorial cards:
 
 | Label | Title |
 | ----- | ----- |
-| PRODUCTION CAPSTONE | A real agentic system you can demo on Day 1. |
-| EVAL-BACKED METRICS | Quantified performance, not promises. |
-| OPERATOR PANEL REVIEW | Reviewed by engineers from leading AI companies. |
-| HIRING INTROS | Direct intros to 30+ partner teams actively hiring. |
+| CERTIFICATE | An official certificate of completion from NeuralVarsity. |
+| CAREER COUNSELLING | Free 1:1 career guidance after the masterclass ends. |
+| BEGINNER-FRIENDLY | No coding required. Every session is built for absolute beginners. |
+| LIVE & INTERACTIVE | Live sessions with Q&A, builds and real-time problem solving. |
 
 Each card: rounded `2xl`, hairline border, `white/[0.02]` bg, accent label in tracked uppercase, title in white display.
 
 ---
 
-## 12. Section 08 — Instructor Authority
-
-File: `components/sections/instructor.tsx`
-
-### Layout
-
-5 cols left (instructor portrait + creds) + 7 cols right (3 principles + pull-quote).
-
-### Text content
-
-**Section index/label:** `07 / INSTRUCTOR`
-
-**Eyebrow (accent):** `YOUR INSTRUCTOR`
-
-**Headline:**
-- Line 1: `Taught by people`
-- Line 2 (italic gradient): `who ship the stack.`
-
-### Credentials strip (3 × 1)
-
-| Value | Label |
-| ----- | ----- |
-| `12+` | YEARS SHIPPING ML IN PRODUCTION |
-| `3` | AI PRODUCTS FROM 0 → 1M USERS |
-| `40+` | OPERATORS MENTORED TO SENIOR ROLES |
-
-### Editorial portrait composition
-
-A 4:5 aspect card, designed to feel like an editorial cover:
-
-- Background:
-  - `radial-gradient(circle at 30% 30%, rgba(77,163,255,0.25), transparent 55%)`
-  - `radial-gradient(circle at 70% 70%, rgba(255,255,255,0.06), transparent 55%)`
-  - Base `#0B0B0F`
-- Soft grid overlay (`mask-radial`)
-- Center: a `144 × 144px` circle with `bg-gradient-to-br from-white/15 via-white/[0.04] to-transparent` rim, inner circle solid `#0B0B0F` with initials `AK` in display
-- Below: `Arjun Kapoor` (display xl), then `LEAD INSTRUCTOR · NEURALVARSITY` in tracked uppercase
-- A bottom hairline strip with bio:
-  > Previously: Staff AI engineer building agent platforms at scale. Shipped LLM-powered products to over a million users. Advisor to early-stage AI infra startups.
-
-### Teaching philosophy (right column, 3 cards)
-
-| # | Title | Body |
-| -- | ----- | ---- |
-| `01` | Build, then explain. | Every concept is grounded in a working system. No theoretical detours. No throwaway slides. |
-| `02` | Evals over opinions. | We let measurement settle disagreements. You learn to make decisions with data, not vibes. |
-| `03` | Operator-first thinking. | Real systems have latency, cost, observability, blast radius. We teach you to design for that reality. |
-
-Each card:
-- `2xl` rounded, hairline, padding `28–36px`
-- A giant `display-5xl` ghost numeral (`text-white/[0.08]`) on the left
-- **Hover:** numeral brightens to `white/15`, border to `white/[0.12]`, background to `white/[0.03]`
-
-### Closing pull-quote
-
-> "The next decade of software belongs to engineers who can design systems that *think, decide, and act.* That's the entire reason this masterclass exists."
->
-> — Arjun Kapoor · Lead Instructor
-
-The italicized phrase uses the same `text-gradient-soft` treatment as headline second-lines.
-
----
-
-## 13. Section 09 — Testimonials
+## 12. Section 08 — Testimonials
 
 File: `components/sections/testimonials.tsx`
 
@@ -737,22 +691,22 @@ A **bento-style asymmetric grid** — varying card sizes (wide, tall, short) cre
 
 **Section index/label:** `08 / VOICES`
 
-**Eyebrow (accent):** `VOICES FROM THE COHORT`
+**Eyebrow (accent):** `VOICES FROM LEARNERS`
 
 **Headline:**
-- Line 1: `What graduates`
-- Line 2 (italic gradient): `say after shipping.`
+- Line 1: `What beginners say`
+- Line 2 (italic gradient): `after the masterclass.`
 
-### Six testimonials
+### Six testimonials (beginner voices)
 
 | Initials | Name | Role | Card weight | Quote |
 | -------- | ---- | ---- | ----------- | ----- |
-| `PM` | Priya Menon | Senior AI Engineer · Atlas Labs | wide | I had been writing prompts for two years. NeuralVarsity rebuilt my mental model in three weeks. By week 12 I had shipped an internal agent that replaced a 5-person research workflow at my company. |
-| `DR` | Daniel Roth | Founding Engineer · Quanta AI | tall | The curriculum is brutal in the best way. You don't just learn LangGraph — you ship something operators can use. That's the thing nobody else does. |
-| `SA` | Sofia Alvarez | Head of AI · Northwind | short | Best $0-to-real-AI-job program I've seen in 10 years of hiring. |
-| `KI` | Karan Iyer | ML Engineer · Helix | wide | I came in as a backend engineer. I walked out architecting multi-agent orchestration for a Series B. The eval-first thinking changed how I work forever. |
-| `AC` | Ana Costa | Product Engineer · OpenLoop | short | Cinematic teaching, brutally practical. They make you build the thing they're explaining. |
-| `JP` | Jordan Park | AI Solutions Architect · Brightline | tall | I tripled my comp and changed careers. That's the cleanest way I can put it. |
+| `AS` | Aanya Sharma | Student · 3rd Year | wide | I had zero coding background. By Day 2 I had built my own AI chatbot and a WhatsApp automation that actually worked. This masterclass made AI feel possible. |
+| `RV` | Rahul Verma | Working Professional | tall | The teaching is calm, clear and beginner-friendly. No jargon, no gatekeeping — just real builds I could reuse the same week at work. |
+| `SI` | Sneha Iyer | Career Switcher | short | Finally an AI masterclass that respects beginners. |
+| `MF` | Mohammed Faraz | Freelancer · Designer | wide | I'm a freelancer, not a coder. After 3 days I was offering AI chatbot and automation services to my own clients. The ROI on a free class is unreal. |
+| `IR` | Ishita Rao | Non-coder · Marketer | short | Beginner-friendly, but never dumbed down. Loved it. |
+| `KS` | Kabir Singh | Final Year · Engineering | tall | The career counselling at the end gave me a clear roadmap I didn't have before. I finally know what to learn next and where AI can take me. |
 
 `wide` = `md:col-span-2`, `tall` = `md:row-span-2`, `short` = default.
 
@@ -768,13 +722,13 @@ A **bento-style asymmetric grid** — varying card sizes (wide, tall, short) cre
 
 ---
 
-## 14. Section 10 — Registration
+## 13. Section 09 — Registration
 
 File: `components/sections/registration.tsx`
 
 ### Layout
 
-5 cols left (intro + benefits + cohort meta card) + 7 cols right (the multi-step form panel).
+5 cols left (intro + benefits + masterclass meta card) + 7 cols right (the multi-step form panel).
 
 ### Atmospheric backdrop
 
@@ -783,29 +737,29 @@ File: `components/sections/registration.tsx`
 
 ### Left column
 
-**Eyebrow (accent):** `ADMISSIONS · COHORT 04`
+**Eyebrow (accent):** `FREE REGISTRATION · 29–31 MAY 2026`
 
 **Headline:**
-- Line 1: `Apply to join`
-- Line 2 (italic gradient): `the masterclass.`
+- Line 1: `Reserve your free seat`
+- Line 2 (italic gradient): `in the masterclass.`
 
 **Supporting copy:**
-> Cohort 04 starts March 04. We accept on a rolling basis. A short application helps us tailor the experience — and ensures the room stays world-class.
+> Seats are limited and assigned on a first-come, first-served basis. Once registered, you'll receive your joining link, schedule and reminders on WhatsApp and email.
 
 **Benefit checklist** (with accent check icons in `accent/[0.12]` chips):
-- `12 weeks of live instruction & mentorship`
-- `1:6 mentor ratio · weekly office hours`
-- `Capstone reviewed by industry operators`
-- `Hiring intros to 30+ partner teams`
+- `3 days of live, beginner-friendly AI training`
+- `Build real AI chatbots, automations & agents`
+- `Free certificate of completion`
+- `Free 1:1 career counselling after the masterclass`
 
-**Next cohort card** (bottom of left col):
-- Label: `NEXT COHORT`
-- Date: `March 04`
-- Sub: `Applications close Feb 18`
+**Free masterclass card** (bottom of left col):
+- Label: `FREE MASTERCLASS`
+- Date: `29–31 May 2026`
+- Sub: `3 evenings · Live online`
 - 3-cell meta row (hairline border-top):
-  - `12w` / LIVE
-  - `Mon/Wed/Fri` / CADENCE
-  - `Hybrid` / FORMAT
+  - `3 Days` / LIVE
+  - `Free` / COST
+  - `Online` / FORMAT
 
 ### Right column — the form
 
@@ -816,55 +770,55 @@ A premium rounded `3xl` panel with:
 
 #### Progress indicator
 
-`STEP 0X / 03` label + three hairline segments. Each filled segment transitions to `bg-accent` over `500ms`.
+`STEP 0X / 02` label + two hairline segments. Each filled segment transitions to `bg-accent` over `500ms`.
 
 #### Step 01 — "Tell us about you."
 
 Floating-label inputs:
 - `Full name` (autocomplete: name)
-- `Work email` (autocomplete: email, type email)
-- `Current role`
-- `Company`
+- `Email address` (autocomplete: email, type email, inputMode email)
+- `Phone number` (autocomplete: tel, type tel, inputMode tel)
+- `City` (autocomplete: address-level2)
 
 **Floating label behavior:**
 - Default: label sits centered at `15px`, in `ink-muted`
-- On focus or when filled: label slides to `top-2`, shrinks to `11px`, uppercase, tracked `0.18em`, in `ink-muted`
+- On focus or when filled: label slides to `top-2`, shrinks to `11px`, uppercase, tracked `0.18em`
 - Input border `white/[0.08] → white/25` on focus, background `white/[0.02] → white/[0.04]`
 - 300ms easings throughout
 
-#### Step 02 — "Your track."
+#### Step 02 — "A bit more about you."
 
-Sub-label: `WHAT BEST DESCRIBES YOU?`
+Sub-label: `CURRENT ROLE`
 
-Three large selectable track cards:
+Four large selectable role cards in a 2 × 2 grid:
 
 | Label | Sub |
 | ----- | --- |
-| Engineer | Backend, full-stack, ML |
-| Founder | Building an AI-native product |
-| Operator | PM, designer, ops, growth |
+| Student | School, college or university |
+| Working Professional | Currently employed full-time |
+| Career Switcher | Moving into AI or tech |
+| Freelancer | Designer, marketer, creator |
 
 Selected state: `border-white/25`, `bg-white/[0.06]`. Hover (unselected): `border-white/15`.
 
-Then sub-label: `YEARS OF EXPERIENCE`
+Sub-label: `STAY IN THE LOOP`
 
-Four rounded-full chips (single-select): `0–2 years` · `2–5 years` · `5–10 years` · `10+ years`
+Two custom checkbox rows (defaults: both checked):
 
-Selected state: `border-white/25`, `bg-white/[0.06]`, white text. Unselected: muted text.
+| Label | Description |
+| ----- | ----------- |
+| WhatsApp updates | Joining links, reminders and updates on WhatsApp. |
+| Email updates | Schedule, recordings (if any) and event updates by email. |
 
-#### Step 03 — "Why this cohort?"
-
-A `6-row` textarea with placeholder:
-> A few sentences on what you want to build, ship or change in your career.
-
-Below in `12px ink-muted`:
-> We read every application personally. Expect a response within 48 hours.
+Each checkbox row:
+- Rounded `xl`, hairline border, `bg-white/[0.02]`
+- Checked: `border-white/25`, `bg-white/[0.05]`, an `accent/[0.18]` checkbox with the `Check` icon
 
 #### Step navigation
 
 Bottom row, hairline border above:
 - `← Back` (disabled & ink-dim on step 1)
-- `Continue →` or `Submit application →` (primary white pill, magnetic 0.2 strength, with `ArrowRight` icon)
+- `Continue →` or `Secure my free seat →` (primary white pill, magnetic 0.2 strength, with `ArrowRight` icon)
 
 Step transitions use `AnimatePresence mode="wait"`:
 - Out: `opacity → 0, y → -8`
@@ -875,16 +829,16 @@ Step transitions use `AnimatePresence mode="wait"`:
 After submit, the form panel cross-fades to:
 
 - A `64 × 64px` accent check circle (`accent/[0.12]` fill, `accent/30` border)
-- Heading (display 3xl): `Application received.`
+- Heading (display 3xl): `You're registered successfully.`
 - Sub-copy (uses the entered first name):
-  > Thanks, **{firstName}**. We've got it. A member of the admissions team will respond within 48 hours.
-- A pseudo application ID chip: `APPLICATION ID · NV-04-XXXX` (random 4-digit)
+  > Thanks, **{firstName}**. You'll receive masterclass updates and joining details on WhatsApp and email.
+- A pseudo seat ID chip: `SEAT ID · NV-MC-XXXX` (random 4-digit between 1000–9999)
 
 Enters with `opacity → 1, scale: 0.98 → 1`, `0.6s` ease.
 
 ---
 
-## 15. Section 11 — FAQ
+## 14. Section 10 — FAQ
 
 File: `components/sections/faq.tsx`
 
@@ -903,22 +857,22 @@ File: `components/sections/faq.tsx`
 - Line 2 (italic gradient): `up front.`
 
 **Supporting copy:**
-> Still curious? Reach out — we'd rather have a conversation than make you guess.
+> Still curious? Drop us a message — we read and reply to every one.
 
-**Email link:** `admissions@neuralvarsity.com` (underline with `decoration-white/30`, hover to full white).
+**Email link:** `hello@neuralvarsity.com` (underline with `decoration-white/30`, hover to full white).
 
-### Eight FAQ entries
+### Eight FAQ entries (beginner-focused)
 
 | Q | A |
 | - | - |
-| Who is this masterclass for? | Engineers, PMs, founders and operators with at least working programming experience who want to architect production agentic AI systems. You should be comfortable in Python and curious about systems thinking. |
-| How is it structured? | 12 weeks, fully live. Three sessions a week (Mon/Wed/Fri). Each week has a build, a review and a one-on-one. By Week 12 you will have shipped a production-grade agentic system. |
-| Do I need prior ML experience? | No formal ML background required. You do need to be comfortable writing software. We teach the relevant ML and infra concepts as we build — operator-first, not academic-first. |
-| What's the time commitment? | Plan for 8–12 hours per week: 3 hours of live sessions, 4–6 hours of building, plus office hours and review. Most students integrate this with full-time work. |
-| Is it cohort-based or self-paced? | Strictly cohort-based and live. The compound effect of building with peers, reviewing each other's systems and having weekly accountability is the entire point. |
-| What about hiring support? | We have 30+ partner companies actively hiring agentic AI engineers. We do direct intros, portfolio reviews, mock interviews and coordinate Demo Day where operators see your work. |
-| What's the application bar? | We're looking for builders. Strong technical fundamentals, clear motivation, and the ability to commit fully to the cohort. We accept ~12% of applicants. |
-| Is there a refund policy? | Yes — full refund within the first two weeks if it isn't the right fit. We'd rather have the right people in the room than a full one. |
+| Is this masterclass beginner friendly? | Yes — 100%. The entire masterclass is built for absolute beginners. Whether you're a student, a non-coder, a working professional or a career switcher, every session is designed so you can follow along and build alongside the mentor. |
+| Do I need any coding experience? | No. You don't need to know Python, JavaScript or any programming language. We use modern drag-and-drop AI tools, no-code builders and AI platforms so you can build real chatbots, automations and agents without writing a single line of code. |
+| Is the masterclass really free? | Yes — the full 3-day masterclass is completely free. There are no hidden charges, no payment information required, and no surprise fees. Just register, show up live and build with us. |
+| Will I get a certificate? | Yes. Every learner who attends and completes the 3-day masterclass receives an official certificate of completion from NeuralVarsity that you can add to your CV, LinkedIn and portfolio. |
+| Will recordings be provided? | Recordings are provided only to students enrolled in our professional programs. Recordings are not available for the free masterclass. |
+| What tools will we use? | Learn modern AI tools like OpenAI, Gemini, Groq, Ollama, Dify, Flowise, LangChain, Cursor, Lovable, Google Colab and HuggingFace while building real AI chatbots, automations and workflows live — step by step, beginner friendly. |
+| Can students and non-coders join? | Absolutely. Students, freelancers, marketers, designers, working professionals and complete beginners are all welcome. This masterclass is designed to feel approachable for anyone — no technical background required. |
+| Will I get career guidance? | Yes — every registered learner gets free 1:1 career counselling after the masterclass. We'll help you understand AI career paths, what to learn next and how to position yourself for modern AI roles and opportunities. |
 
 ### Item structure & effects
 
@@ -940,6 +894,77 @@ Only one item can be open at a time. Default open: item 1.
 
 ---
 
+## 15. Section 11 — Feedback & Questions
+
+File: `components/sections/feedback.tsx`
+
+### Layout
+
+5 cols left (intro + contact info cards) + 7 cols right (glassmorphism form panel).
+
+### Atmospheric backdrop
+
+- Centered top radial glow: `55vh × 80vw`, `radial-gradient(ellipse at top, rgba(77,163,255,0.10), transparent 60%)`
+- Fine grid, `mask-radial`, `opacity 0.25`
+
+### Left column
+
+**Eyebrow (accent):** `FEEDBACK & QUESTIONS`
+
+**Headline:**
+- Line 1: `Have a question?`
+- Line 2 (italic gradient): `We'd love to hear it.`
+
+**Supporting copy:**
+> Have questions about the masterclass? Share your feedback or ask us anything — we read and respond to every message.
+
+### Contact info cards (2 × 2)
+
+| Label | Value |
+| ----- | ----- |
+| EMAIL | hello@neuralvarsity.com |
+| WHATSAPP | +91 · Coming soon |
+| INSTAGRAM | @neuralvarsity |
+| REPLY TIME | Within 24 hours |
+
+Each card: rounded `2xl`, hairline border, `bg-white/[0.02]`, padding `16px`, accent uppercase label + white value.
+
+### Right column — glassmorphism form
+
+A premium rounded `3xl` panel with stronger glass treatment than the registration panel:
+- `border-white/[0.08]`, gradient `white/[0.04] → transparent`, `backdrop-blur-xl`
+- Two accent blur orbs: top-right (`224 × 224`, `accent/[0.10]`, `blur-3xl`) and bottom-left (`224 × 224`, `accent/[0.06]`, `blur-3xl`)
+- Fine grid `mask-radial` behind
+
+#### Header row
+
+- Left: `SEND US A MESSAGE` (uppercase, tracked, `ink-muted`)
+- Right (sm+): `WE READ EVERY REPLY` chip
+
+#### Fields
+
+- `Name` (autocomplete: name) and `Email` (type email, autocomplete: email) in a 2-column row on sm+
+- `Message` — multiline textarea, 6 rows, label floats up the same way regular inputs do, `pt-7 pb-3 leading-[1.55]`, `resize-none`
+
+All fields use the same `FloatingField` component — floating label slides to a small uppercase chip in the top-left when focused or filled.
+
+#### Submit row (hairline border above)
+
+- Left: `We typically reply within 24 hours.` (12px ink-muted)
+- Right: `Send Feedback` (primary white pill, magnetic 0.2, with `ArrowRight` icon)
+
+#### Success state
+
+After submit, the form panel cross-fades to:
+
+- A `56 × 56px` accent check circle
+- Heading (display 2xl–3xl): `Message received.`
+- Sub-copy: `Thanks, {firstName}. We'll get back to you on {email} within 24 hours.`
+
+Enters with `opacity → 1, scale: 0.98 → 1`, `0.6s` ease.
+
+---
+
 ## 16. Section 12 — Final CTA
 
 File: `components/sections/final-cta.tsx`
@@ -956,23 +981,23 @@ Additional overlays:
 
 **Cohort chip** (rounded-full, hairline border, backdrop-blur):
 - Pulsing accent dot
-- `COHORT 04 · NOW OPEN`
+- `FREE MASTERCLASS · 29–31 MAY 2026`
 
 **Headline** (display-xl):
-- Line 1: `Build the next era`
-- Line 2 (italic gradient): `of AI. With us.`
+- Line 1: `Start your AI journey`
+- Line 2 (italic gradient): `with NeuralVarsity.`
 
 **Sub-copy** (centered, max-w-xl, `~17px ink-muted`):
-> 12 weeks. Live. Operator-led. Capstone-graded. The most serious agentic AI program for builders ready to ship.
+> 3 days. Live online. Free. Beginner-friendly. Build real AI chatbots, automations and agents with no coding required — and walk away with a certificate and a clear AI career roadmap.
 
 Animates in with `y: 18 → 0, opacity 0 → 1, blur(8px) → 0`, delay `0.7s`.
 
 **CTAs** (centered, delay `1s`):
-- Primary: `Apply for Cohort 04` (white pill, magnetic 0.22)
-- Secondary: `Talk to admissions` (mailto, magnetic 0.15)
+- Primary: `Register for Free` (white pill, magnetic 0.22, scrolls to `#register`)
+- Secondary: `Ask a Question` (magnetic 0.15, scrolls to `#feedback`)
 
 **Bottom meta strip** (uppercase tracked):
-`STARTS MARCH 04` · `12 WEEKS LIVE` · `APPLICATIONS CLOSE FEB 18`
+`29–31 MAY 2026` · `LIVE ONLINE · FREE` · `CERTIFICATE · CAREER COUNSELLING`
 
 ---
 
@@ -989,19 +1014,19 @@ File: `components/layout/footer.tsx`
 5-column grid on desktop:
 
 - **Brand column (2 cols)**
-  - Wordmark (md size)
-  - Body:
-    > A live masterclass for the engineers and operators building the agentic AI era.
-  - Two cohort chips: `COHORT 04 · OPEN` and `MAR 04 → MAY 27`
+  - Wordmark (md size) — logo image + `NeuralVarsity` Poppins 800
+  - Tagline:
+    > NeuralVarsity — Modern AI Learning for Everyone.
+  - Two chips: `FREE MASTERCLASS · OPEN` and `29–31 MAY 2026`
 
-- **Program** column
-  - Curriculum, Stack, Outcomes, Instructor
+- **Masterclass** column
+  - Register, Curriculum, Tools, Outcomes
 
-- **Apply** column
-  - Cohort 04, FAQ, Refund policy, Talk to admissions
+- **Help** column
+  - FAQ, Contact (→ `#feedback`), Email us (→ `mailto:hello@neuralvarsity.com`)
 
-- **Company** column
-  - About, Partners, Careers, Press
+- **Follow** column
+  - Instagram, LinkedIn, YouTube
 
 Links: `14px ink`, hover to white.
 
@@ -1009,7 +1034,7 @@ Links: `14px ink`, hover to white.
 
 - `© {year} NeuralVarsity. All rights reserved.`
 - Right side links: `Privacy`, `Terms`, `Code of Conduct`
-- Tagline: `Crafted in dark mode.`
+- Tagline: `Crafted for learners, in dark mode.`
 
 ### Massive backdrop wordmark
 
@@ -1021,7 +1046,19 @@ A single line of `NeuralVarsity` in **Poppins 800**, scaled to `clamp(4rem, 14vw
 
 ### `Wordmark` — `components/brand/wordmark.tsx`
 
-The brand mark. Strictly Poppins 800, solid white. Has an optional small white pulse dot.
+The brand mark. Strictly Poppins 800, solid white text. Optionally renders the `/nv-logo.png` image (default `showLogo: true`) as a `next/image` glyph beside the wordmark. Three sizes:
+
+| Size | Text | Logo box | Logo px |
+| ---- | ---- | -------- | ------- |
+| `sm` | `15px` | `h-6 w-6` | 24 |
+| `md` | `17px` | `h-7 w-7` | 28 |
+| `lg` | `text-2xl` | `h-9 w-9` | 36 |
+
+### `BrandLogo` — `components/brand/tool-logos.tsx`
+
+Renders the colorful brand glyph for any of the masterclass tools. Looks up the tool by name in a `logoMap` and falls back to an accent dot if unknown.
+
+Supported names: `OpenAI`, `Gemini`, `Groq`, `Ollama`, `Dify`, `Flowise`, `LangChain`, `Cursor`, `Lovable`, `Google Colab`, `HuggingFace`, `WhatsApp`, `WhatsApp Automation`.
 
 ### `Button` — `components/ui/button.tsx`
 
@@ -1065,12 +1102,20 @@ IntersectionObserver-driven reveals:
 
 ### `SplitText` — `components/ui/split-text.tsx`
 
-Word-by-word headline reveal:
-- Each word rendered inside an `overflow-hidden` span
-- Animates `y: 110% → 0`, `opacity: 0 → 1`, `blur(8px) → 0`
-- `0.95s cubic-bezier(0.16, 1, 0.3, 1)`
-- Configurable `stagger` (default `0.05s`) and `delay`
-- Used for nearly every headline in the page
+Word-by-word headline reveal. Defaults match the standard editorial pattern, all props overridable for the Hero's heavier cinematic cascade:
+
+| Prop | Default | Notes |
+| ---- | ------- | ----- |
+| `delay` | `0` | Per-line start offset |
+| `stagger` | `0.05` | Word-to-word delay |
+| `duration` | `0.95` | Per-word transition duration |
+| `ease` | `[0.16, 1, 0.3, 1]` | Cinematic ease |
+| `blur` | `8` | Initial blur in px |
+| `y` | `"110%"` | Initial Y offset |
+| `as` | `"h2"` | Tag override |
+| `once` | `true` | Replay on re-enter? |
+
+Each word animates inside an `overflow-hidden` span: `y: y → 0`, `opacity: 0 → 1`, `filter: blur(N px) → blur(0)`.
 
 ### Icons — `components/ui/icons.tsx`
 
@@ -1078,7 +1123,7 @@ Inline SVG icons: `ArrowRight`, `ArrowUpRight`, `Plus`, `Minus`, `Check`, `Spark
 
 ### `NeuralNetworkCanvas` — `components/three/neural-network-canvas.tsx`
 
-The hero/CTA 3D scene. Detailed in [Section 01 — Hero](#5-section-01--hero).
+The hero/CTA 3D scene. Detailed in [Section 01 — Hero](#5-section-01--hero). `state.mouse` and `state.viewport` are accessed inside `useFrame` (not via `useThree` at component-level) to keep the canvas HMR-safe.
 
 ---
 
@@ -1088,12 +1133,13 @@ The hero/CTA 3D scene. Detailed in [Section 01 — Hero](#5-section-01--hero).
 NV registration page 2/
 ├── app/
 │   ├── globals.css                # Tailwind layers + tokens + utilities + Lenis css
-│   ├── layout.tsx                 # Root layout, fonts, providers
+│   ├── layout.tsx                 # Root layout, fonts, providers, masterclass metadata
 │   └── page.tsx                   # Page composition (all 12 sections)
 │
 ├── components/
 │   ├── brand/
-│   │   └── wordmark.tsx           # NeuralVarsity wordmark (Poppins 800)
+│   │   ├── wordmark.tsx           # NeuralVarsity wordmark (Poppins 800) + logo image
+│   │   └── tool-logos.tsx         # Colorful SVG glyphs for the 12 masterclass tools
 │   │
 │   ├── layout/
 │   │   ├── navigation.tsx         # Floating pill nav + mobile menu
@@ -1104,18 +1150,18 @@ NV registration page 2/
 │   │   └── custom-cursor.tsx            # Dot + ring with hover grow
 │   │
 │   ├── sections/
-│   │   ├── hero.tsx                     # Section 01
-│   │   ├── trust-strip.tsx              # Section 02
-│   │   ├── why-agentic.tsx              # Section 03
-│   │   ├── curriculum.tsx               # Section 04
-│   │   ├── tech-ecosystem.tsx           # Section 05
-│   │   ├── workflows.tsx                # Section 06
-│   │   ├── outcomes.tsx                 # Section 07
-│   │   ├── instructor.tsx               # Section 08
-│   │   ├── testimonials.tsx             # Section 09
-│   │   ├── registration.tsx             # Section 10
-│   │   ├── faq.tsx                      # Section 11
-│   │   └── final-cta.tsx                # Section 12
+│   │   ├── hero.tsx                     # Section 01 — Hero (3-line cascade)
+│   │   ├── trust-strip.tsx              # Section 02 — Trust strip (tools marquee + values)
+│   │   ├── why-agentic.tsx              # Section 03 — Why this masterclass
+│   │   ├── curriculum.tsx               # Section 04 — 3-day curriculum
+│   │   ├── tech-ecosystem.tsx           # Section 05 — Tech ecosystem (12 tools + NV logo core)
+│   │   ├── workflows.tsx                # Section 06 — Live workflows
+│   │   ├── outcomes.tsx                 # Section 07 — Outcomes + benefits
+│   │   ├── testimonials.tsx             # Section 08 — Beginner voices
+│   │   ├── registration.tsx             # Section 09 — Free 2-step registration
+│   │   ├── faq.tsx                      # Section 10 — 8 beginner FAQs
+│   │   ├── feedback.tsx                 # Section 11 — Feedback & Questions
+│   │   └── final-cta.tsx                # Section 12 — Final CTA
 │   │
 │   ├── three/
 │   │   └── neural-network-canvas.tsx    # R3F neural network background
@@ -1131,6 +1177,12 @@ NV registration page 2/
 │
 ├── lib/
 │   └── utils.ts                   # cn() — clsx + tailwind-merge
+│
+├── public/
+│   └── nv-logo.png                # NeuralVarsity logo (navbar + orbit core)
+│
+├── imgs/
+│   └── NV LOGO UPDATED.png        # Source logo asset
 │
 ├── .eslintrc.json                 # ESLint config (next/core-web-vitals)
 ├── .gitignore                     # Standard Next.js gitignore
@@ -1155,13 +1207,15 @@ NV registration page 2/
 <TechEcosystem />
 <Workflows />
 <Outcomes />
-<Instructor />
 <Testimonials />
 <Registration />
 <FAQ />
+<Feedback />
 <FinalCTA />
 <Footer />
 ```
+
+> Note: the `Instructor` section that existed in the early design has been removed for the free masterclass version.
 
 ### Dependencies
 
@@ -1191,6 +1245,7 @@ NV registration page 2/
 | Name | Cubic-bezier | Use |
 | ---- | ------------ | --- |
 | Cinematic | `cubic-bezier(0.16, 1, 0.3, 1)` | All major reveals, transitions, scroll storytelling |
+| Hero cascade | `cubic-bezier(0.22, 1, 0.36, 1)` | Hero 3-line cinematic cascade |
 | Soft | `cubic-bezier(0.22, 1, 0.36, 1)` | Small UI hover transitions |
 | Spring (180 / 18) | Framer spring | Magnetic CTAs, custom cursor lerp |
 | Spring (400 / 28) | Framer spring | Button press feedback |
@@ -1201,7 +1256,8 @@ NV registration page 2/
 | ---- | -- | -------- | ---- | --- |
 | Reveal | 24 → 0 | 0.9s | 8 → 0 | Single block reveals |
 | StaggerItem | 18 → 0 | 0.8s | 6 → 0 | Stagger children |
-| SplitText word | 110% → 0 | 0.95s | 8 → 0 | Headline reveal |
+| SplitText word (default) | 110% → 0 | 0.95s | 8 → 0 | Section headline reveal |
+| SplitText word (Hero) | 110% → 0 | 1.05s | 12 → 0 | Hero 3-line cascade |
 | Sub-copy (hero, CTAs) | 18 → 0 | 1.0s | 8 → 0 | Long paragraphs |
 
 ### Scroll-driven effects
@@ -1215,11 +1271,11 @@ NV registration page 2/
 
 | Effect | Where | Period |
 | ------ | ----- | ------ |
-| Partner marquee | Trust Strip | 40s, linear, infinite |
+| Tools marquee | Trust Strip | 40s, linear, infinite |
 | Inner orbit ring | Tech Ecosystem | 55s, clockwise |
 | Middle orbit ring | Tech Ecosystem | 70s, counter-clockwise |
 | Outer orbit ring | Tech Ecosystem | 90s, clockwise |
-| NV core pulse | Tech Ecosystem | scale 1 → 1.04 → 1, 6s easeInOut |
+| NV logo core pulse | Tech Ecosystem | scale 1 → 1.05 → 1, 6s easeInOut |
 | Cohort dot ping | Nav, Hero, Final CTA | Tailwind `animate-ping` |
 | Workflow comet | Workflows section | `x: -100% → 1200%`, 3.6s linear, 0.4s per-edge delay |
 | Hero neural drift | Hero, Final CTA | trig-based, continuous |
@@ -1239,7 +1295,8 @@ NV registration page 2/
 | FAQ toggle | `border-white/[0.08]` | `border-white/15 bg-white/[0.05] text-white` |
 | Tool chips (Ecosystem) | `border-white/[0.08]` | `scale-110`, accent glow `0 0 24px rgba(77,163,255,0.4)`, paired list chip lights up |
 | List chips (Ecosystem) | `border-white/[0.08] text-ink` | `border-white/30 bg-white/[0.06] text-white`, paired orbit pill lights up |
-| Track cards (Reg form) | `border-white/[0.08]` | `border-white/15` (only when unselected) |
+| Role cards (Reg form) | `border-white/[0.08]` | `border-white/15` (only when unselected) |
+| Checkbox row (Reg form) | `border-white/[0.08]` | `border-white/15` (unchecked); `border-white/25 bg-white/[0.05]` (checked) |
 | Workflow picker rows | `border-white/[0.06]` | `border-white/[0.12] bg-white/[0.02]` (only when inactive) |
 | Cursor (global) | `32px ring` | `56px ring`, opacity → 0.7, 300ms |
 | Magnetic CTAs | static | follow cursor up to `strength × distance`, spring back |
@@ -1248,12 +1305,15 @@ NV registration page 2/
 
 | Element | Where | Details |
 | ------- | ----- | ------- |
-| Top radial glow | Hero, Registration, Final CTA | `60vh × full-w`, `rgba(77,163,255,0.08–0.12) → transparent 55%` |
+| Top radial glow | Hero, Registration, Feedback, Final CTA | `55–60vh × full-w`, `rgba(77,163,255,0.08–0.12) → transparent 55–60%` |
 | Vertical fade overlay | Hero, Final CTA | `transparent → #0B0B0F/30–40 → #0B0B0F` |
-| Fine grid | Hero, Ecosystem, Workflows, Registration | `28 × 28px`, `mask-radial`, `opacity 0.2–0.5` |
-| Soft grid | Instructor portrait, Registration | `64 × 64px`, `mask-radial`, `opacity 0.2–0.3` |
+| Fine grid | Hero, Ecosystem, Workflows, Registration, Feedback | `28 × 28px`, `mask-radial`, `opacity 0.2–0.5` |
+| Soft grid | Registration | `64 × 64px`, `mask-radial`, `opacity 0.2–0.3` |
 | Noise texture | Hero | SVG fractal noise, `opacity 0.5`, `mix-blend-overlay` |
 | Card hover orb | Why Agentic, Curriculum, Workflows, Testimonials | `bg-accent/[0.06–0.08]`, `blur-3xl`, 700ms fade |
+| NV core dashed halo | Tech Ecosystem | `160 × 160px` ring, `border-dashed border-white/10` |
+| NV core glow + drop-shadow | Tech Ecosystem | radial blue glow behind logo + per-image `drop-shadow(0 0 24px rgba(77,163,255,0.45))` |
+| Form panel blur orbs | Registration, Feedback | `224 × 224px`, `bg-accent/[0.06–0.10]`, `blur-3xl` |
 | Index numerals | Curriculum (desktop) | `display-7xl`, `text-white/[0.04]`, ghost behind cards |
 | Ghost wordmark | Footer | `clamp(4rem, 14vw, 13rem)`, `rgba(255,255,255,0.035)`, `mask-fade-x` |
 
@@ -1275,6 +1335,7 @@ NV registration page 2/
 - All section reveals use `once: true` IntersectionObserver to avoid re-firing
 - GSAP ticker drives Lenis with `lagSmoothing(0)` to avoid jitter
 - Tailwind purge config scopes to `app/` and `components/`
+- `nv-logo.png` is rendered through `next/image` with `priority` where it appears above the fold (navbar + orbit core)
 
 ---
 

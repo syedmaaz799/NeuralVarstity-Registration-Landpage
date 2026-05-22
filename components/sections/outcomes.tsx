@@ -8,53 +8,53 @@ import { ArrowUpRight } from "@/components/ui/icons";
 
 const transformations = [
   {
-    title: "Learn modern AI tools",
-    range: "OpenAI · Gemini · Groq",
-    desc: "Get hands-on with the AI tools used by startups and modern AI teams.",
+    title: "Build production-style AI workflows",
+    range: "Real systems · not demos",
+    desc: "Ship AI chatbots, WhatsApp AI agents and multi-step automations — the kind modern startups actually deploy.",
   },
   {
-    title: "Build your first AI workflows",
-    range: "Live · Step by step",
-    desc: "Ship real chatbots, automations and AI agents — built live during the masterclass.",
+    title: "Master modern Agentic AI systems",
+    range: "Agents · Orchestration · Pipelines",
+    desc: "Understand how multi-agent systems, AI orchestration and autonomous workflows actually work — and design your own.",
   },
   {
-    title: "Explore AI career opportunities",
-    range: "Career roadmap",
-    desc: "Understand where AI is going and the real paths open to beginners in 2026.",
+    title: "Run local AI on your own machine",
+    range: "Ollama · HuggingFace · Private",
+    desc: "Build private AI workflows that run locally — zero API cost, full privacy, complete control over your AI stack.",
   },
   {
-    title: "Become AI confident",
-    range: "From watcher to builder",
-    desc: "Move from observing AI to actively building with it — no coding required.",
+    title: "Build portfolio-ready AI projects",
+    range: "Demo-ready · Career-ready",
+    desc: "Walk away with real AI builds you can showcase to clients, recruiters or your audience — not just notes.",
   },
   {
-    title: "Earn a certificate",
+    title: "Earn an official certificate",
     range: "Completion · NeuralVarsity",
-    desc: "Get an official certificate of completion to showcase on your profile and CV.",
+    desc: "Get an official certificate of completion to showcase on your CV, LinkedIn and portfolio.",
   },
   {
-    title: "Free career counselling",
-    range: "1:1 guidance",
-    desc: "Get personalized career guidance from our team after the masterclass — completely free.",
+    title: "Free 1:1 AI career counselling",
+    range: "Roadmap · Freelancing · Future",
+    desc: "Get personalized guidance — AI career paths, freelancing opportunities and how to position yourself in the modern AI economy.",
   },
 ];
 
 const benefits = [
   {
-    label: "Certificate",
-    title: "An official certificate of completion from NeuralVarsity.",
+    label: "Production-style builds",
+    title: "Every project is a real AI workflow — not a toy demo.",
   },
   {
-    label: "Career counselling",
-    title: "Free 1:1 career guidance after the masterclass ends.",
+    label: "Modern AI stack",
+    title: "OpenAI · Gemini · Groq · Ollama · Cursor · Lovable. The actual builder stack.",
   },
   {
-    label: "Beginner-friendly",
-    title: "No coding required. Every session is built for absolute beginners.",
+    label: "Free career counselling",
+    title: "Free 1:1 AI career guidance after the masterclass — roadmap, freelancing, opportunities.",
   },
   {
     label: "Live & interactive",
-    title: "Live sessions with Q&A, builds and real-time problem solving.",
+    title: "Live builds, real-time Q&A and direct mentoring from your AI educator.",
   },
 ];
 
@@ -81,17 +81,18 @@ export function Outcomes() {
           </div>
           <Reveal delay={0.3}>
             <p className="mt-7 max-w-md text-[15px] leading-[1.65] text-ink-muted">
-              Most courses leave you with notes. You'll leave this masterclass with
-              real AI builds, a career roadmap and the confidence to keep building —
-              even if you've never written code before.
+              Most courses leave you with notes. You'll leave this masterclass
+              with production-style AI builds, real agentic AI experience and a
+              clear modern AI career roadmap — even if you've never written a
+              line of code.
             </p>
           </Reveal>
 
           <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02]">
             {[
               { v: "3 Days", l: "Live online" },
-              { v: "100%", l: "Hands-on" },
-              { v: "Free", l: "Career counselling" },
+              { v: "100%", l: "Production-style" },
+              { v: "Free", l: "1:1 Counselling" },
               { v: "✓", l: "Certificate" },
             ].map((m, i) => (
               <Reveal key={m.l} delay={i * 0.06}>

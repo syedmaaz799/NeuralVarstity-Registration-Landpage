@@ -92,9 +92,10 @@ export function Hero() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 1.1 }}
           className="mt-8 max-w-[680px] text-balance text-[17px] leading-[1.55] text-ink-muted sm:text-[18px]"
         >
-          Learn how to build AI chatbots, automations and modern AI workflows using
-          drag-and-drop tools, OpenAI, Gemini, Groq and local AI models — even if
-          you're a complete beginner.
+          Build real AI agents, AI automations, WhatsApp AI systems and autonomous
+          workflows using OpenAI, Gemini, Groq, HuggingFace, Ollama and modern
+          no-code AI tools — the same production-style AI stack used by startups,
+          without writing a single line of code.
         </motion.p>
 
         {/* CTAs */}

@@ -10,46 +10,50 @@ import { SplitText } from "@/components/ui/split-text";
 const modules = [
   {
     week: "Day 01 · 29 May",
-    phase: "Foundations & AI Tools",
-    title: "Build AI Chatbots & Use Powerful AI Models",
-    body: "Start from zero. Learn the modern AI model landscape and build your first AI chatbots using OpenAI, Gemini, Groq and local AI models — all without writing code.",
+    phase: "AI Models & Local AI Systems",
+    title: "Build AI Chatbots, Local AI Systems & Real AI Workflows",
+    body: "Master the modern AI model stack from day one. Build production-style AI chatbots, connect multiple AI models together and run private AI workflows locally — using OpenAI, Gemini, Groq, HuggingFace and Ollama. No coding required.",
     bullets: [
-      "OpenAI API",
-      "Gemini API",
-      "Groq API",
-      "Open-source AI models",
-      "Ollama local AI setup",
-      "Drag-and-drop chatbot building",
-      "No-code AI workflows",
+      "OpenAI · Gemini · Groq API workflows",
+      "Ollama local AI on your laptop",
+      "HuggingFace open-source AI models",
+      "Multi-model AI chatbot systems",
+      "Custom AI assistants & knowledge bases",
+      "Drag-and-drop AI workflow builders",
+      "AI model orchestration",
+      "Private local AI workflows",
     ],
   },
   {
     week: "Day 02 · 30 May",
-    phase: "AI Agents & Automation",
-    title: "Build AI Agents & Automations",
-    body: "Move from chatbots to autonomous workflows. Build email automations, WhatsApp automations and multi-step AI agents that work for you, around the clock.",
+    phase: "AI Agents & Autonomous Workflows",
+    title: "Build AI Agents & Automations That Work For You",
+    body: "The day you stop watching AI and start building it. Design autonomous AI agents, WhatsApp AI automations, AI email assistants and multi-step AI pipelines — the production-style workflows modern startups deploy every day.",
     bullets: [
-      "Email automation",
-      "WhatsApp automation",
-      "AI assistants",
-      "Workflow automations",
-      "Multi-step AI agents",
-      "Productivity systems",
+      "Autonomous AI agents",
+      "WhatsApp AI automation",
+      "AI email assistants",
+      "Multi-step AI pipelines",
+      "AI agents with memory",
+      "AI lead qualification systems",
+      "AI productivity systems",
+      "AI workflow architecture",
     ],
   },
   {
     week: "Day 03 · 31 May",
-    phase: "AI Career & Modern Platforms",
-    title: "Modern AI Career Tools & Future AI Platforms",
-    body: "Step into the modern AI builder ecosystem. Ship AI apps with Cursor, Lovable and Google Colab — and finish with a clear AI career roadmap and free counselling.",
+    phase: "Modern AI Builder Stack & Careers",
+    title: "Modern AI Builder Stack & Future AI Careers",
+    body: "Step into the modern AI builder ecosystem. Ship real AI products with Cursor, Lovable and Google Colab, learn how modern AI teams prototype and deploy — and walk away with a real AI career roadmap and free 1:1 counselling.",
     bullets: [
-      "Cursor AI",
-      "Lovable",
-      "Google Colab",
-      "Modern AI development platforms",
-      "AI app building",
-      "AI career roadmap",
-      "Free career counselling",
+      "Cursor AI builder workflows",
+      "Lovable AI app building",
+      "Google Colab AI development",
+      "Rapid AI prototyping",
+      "Modern AI builder ecosystem",
+      "AI portfolio projects",
+      "AI freelancing opportunities",
+      "Free 1:1 career counselling",
     ],
   },
 ];
@@ -83,9 +87,10 @@ export function Curriculum() {
         </div>
         <Reveal delay={0.4}>
           <p className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.6] text-ink-muted">
-            Each day is a hands-on build. By the end of Day 3, you'll have built real
-            AI chatbots, automations and agents — and you'll walk away with a clear
-            AI career roadmap.
+            Each day is a hands-on production-style build. By the end of Day 3
+            you'll have shipped real AI agents, autonomous automations and
+            multi-agent systems — and walk away with a clear modern AI career
+            roadmap.
           </p>
         </Reveal>
       </div>

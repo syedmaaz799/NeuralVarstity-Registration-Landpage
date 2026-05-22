@@ -10,18 +10,18 @@ import { SplitText } from "@/components/ui/split-text";
 const shifts = [
   {
     n: "01",
-    title: "From watching AI to building with AI.",
-    body: "You don't need a CS degree to ship modern AI. With drag-and-drop tools and modern AI platforms, anyone can build real chatbots, automations and agents in days — not years.",
+    title: "From using AI to orchestrating AI.",
+    body: "Stop being a passive AI user. Learn to design AI agents, multi-step pipelines and autonomous workflows — the modern Agentic AI stack today's startups are shipping with right now.",
   },
   {
     n: "02",
-    title: "From experts only to everyone.",
-    body: "AI used to belong to engineers. Today, students, freelancers, career switchers and working professionals are building production-ready AI workflows using no-code platforms.",
+    title: "From experts only to every builder.",
+    body: "Modern no-code AI infrastructure has removed the coding barrier. Students, freelancers, working professionals and career switchers are now shipping production-style AI systems — without writing a single line of code.",
   },
   {
     n: "03",
-    title: "From learning to shipping in 3 days.",
-    body: "Most courses stop at theory. In this 3-day masterclass you'll build AI chatbots, WhatsApp automations and AI agents live — alongside a mentor who guides every step.",
+    title: "From theory to production-style workflows.",
+    body: "Most courses stop at slides. You'll build real AI agents, WhatsApp AI automations, local AI assistants and multi-agent systems — live, in 3 days, alongside a mentor who guides every step.",
   },
 ];
 
@@ -39,7 +39,7 @@ export function WhyAgentic() {
         <div className="lg:col-span-5">
           <div className="sticky top-32">
             <Reveal>
-              <Eyebrow variant="accent">Why This Masterclass · Why Now</Eyebrow>
+              <Eyebrow variant="accent">Why Agentic AI · Why Now</Eyebrow>
             </Reveal>
             <div className="mt-6">
               <SplitText
@@ -56,9 +56,10 @@ export function WhyAgentic() {
             </div>
             <Reveal delay={0.3}>
               <p className="mt-7 max-w-md text-[15px] leading-[1.65] text-ink-muted">
-                Modern AI tools have removed the coding barrier. Whether you're a
-                student, a non-coder, a working professional or a career switcher —
-                you can now build real AI products and unlock new career paths.
+                Modern no-code AI infrastructure has removed the coding barrier.
+                Students, freelancers, working professionals and career switchers
+                are now shipping real agentic AI systems — the kind that, until
+                last year, only AI engineers could build.
               </p>
             </Reveal>
 
@@ -70,9 +71,10 @@ export function WhyAgentic() {
                 Market signal
               </p>
               <p className="mt-3 text-balance text-[15px] leading-[1.6] text-ink">
-                &ldquo;<span className="text-white">AI skills are now the #1
-                in-demand skill</span> across freelancing platforms, startups and
-                enterprise hiring in 2026.&rdquo;
+                &ldquo;<span className="text-white">Agentic AI engineering is the
+                fastest-growing role</span> across every major hiring and
+                freelancing platform in 2026 — and modern no-code AI
+                infrastructure has put it within reach of anyone.&rdquo;
               </p>
               <p className="mt-4 text-[12px] text-ink-dim">
                 — Global AI Talent Report

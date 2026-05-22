@@ -21,23 +21,23 @@ const tools = [
 const values = [
   {
     value: "100%",
-    label: "Practical",
-    sub: "every session is build-first",
+    label: "Production-style",
+    sub: "real AI workflows used by builders",
   },
   {
     value: "No Code",
-    label: "No coding required",
-    sub: "drag-and-drop AI workflows",
+    label: "No-code AI infrastructure",
+    sub: "drag-and-drop AI builders",
   },
   {
-    value: "Real",
-    label: "Build real AI agents",
-    sub: "chatbots, automations, agents",
+    value: "Agentic",
+    label: "Real AI agents",
+    sub: "agents · automations · multi-agent",
   },
   {
     value: "Career",
-    label: "Career focused",
-    sub: "roadmap + free counselling",
+    label: "Future-ready",
+    sub: "portfolio + 1:1 career counselling",
   },
 ];
 
@@ -48,7 +48,7 @@ export function TrustStrip() {
         <Reveal>
           <div className="flex flex-col items-center gap-8 text-center">
             <p className="text-[11px] uppercase tracking-[0.22em] text-ink-muted">
-              AI tools you'll learn over 3 days
+              The modern AI builder stack you'll master in 3 days
             </p>
             <div className="mask-fade-x flex w-full items-center justify-between gap-10 overflow-hidden">
               <motion.div

@@ -26,6 +26,7 @@ function FloatingInput({
   required,
   autoComplete,
   inputMode,
+  error,
 }: {
   id: string;
   label: string;
@@ -35,9 +36,11 @@ function FloatingInput({
   required?: boolean;
   autoComplete?: string;
   inputMode?: "text" | "email" | "tel" | "numeric";
+  error?: string;
 }) {
   const [focused, setFocused] = useState(false);
   const filled = value.length > 0 || focused;
+  const hasError = !!error;
   return (
     <div className="relative">
       <input
@@ -47,22 +50,38 @@ function FloatingInput({
         required={required}
         autoComplete={autoComplete}
         inputMode={inputMode}
+        aria-invalid={hasError}
+        aria-describedby={hasError ? `${id}-error` : undefined}
         onChange={(e) => onChange(e.target.value)}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
-        className="peer w-full rounded-xl border border-white/[0.08] bg-white/[0.02] px-4 pb-2 pt-6 text-[15px] text-white outline-none transition-all duration-300 focus:border-white/25 focus:bg-white/[0.04]"
+        className={cn(
+          "peer w-full rounded-xl border bg-white/[0.02] px-4 pb-2 pt-6 text-[15px] text-white outline-none transition-all duration-300",
+          hasError
+            ? "border-red-400/60 focus:border-red-400/80"
+            : "border-white/[0.08] focus:border-white/25 focus:bg-white/[0.04]"
+        )}
       />
       <label
         htmlFor={id}
         className={cn(
           "pointer-events-none absolute left-4 transition-all duration-300",
           filled
-            ? "top-2 text-[11px] uppercase tracking-[0.18em] text-ink-muted"
-            : "top-1/2 -translate-y-1/2 text-[15px] text-ink-muted"
+            ? "top-2 text-[11px] uppercase tracking-[0.18em]"
+            : "top-1/2 -translate-y-1/2 text-[15px]",
+          hasError ? "text-red-300/90" : "text-ink-muted"
         )}
       >
         {label}
       </label>
+      {hasError && (
+        <p
+          id={`${id}-error`}
+          className="mt-1.5 pl-1 text-[11px] uppercase tracking-[0.14em] text-red-300/90"
+        >
+          {error}
+        </p>
+      )}
     </div>
   );
 }
@@ -122,6 +141,7 @@ function CheckboxRow({
 export function Registration() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [attemptedNext, setAttemptedNext] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -135,11 +155,50 @@ export function Registration() {
   const update = <K extends keyof typeof form>(k: K) =>
     (v: (typeof form)[K]) => setForm((f) => ({ ...f, [k]: v }));
 
-  const next = () => setStep((s) => Math.min(s + 1, 2));
+  const emailValid = (s: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s.trim());
+  const phoneDigits = (s: string) => s.replace(/\D/g, "").length;
+
+  const step1Errors = {
+    name: !form.name.trim() ? "Please enter your full name" : "",
+    email: !form.email.trim()
+      ? "Please enter your email"
+      : !emailValid(form.email)
+        ? "Enter a valid email address"
+        : "",
+    phone: !form.phone.trim()
+      ? "Please enter your phone number"
+      : phoneDigits(form.phone) < 7
+        ? "Enter a valid phone number"
+        : "",
+    city: !form.city.trim() ? "Please enter your city" : "",
+  };
+  const step1Valid =
+    !step1Errors.name &&
+    !step1Errors.email &&
+    !step1Errors.phone &&
+    !step1Errors.city;
+
+  const next = () => {
+    if (step === 1 && !step1Valid) {
+      setAttemptedNext(true);
+      return;
+    }
+    setAttemptedNext(false);
+    setStep((s) => Math.min(s + 1, 2));
+  };
   const prev = () => setStep((s) => Math.max(s - 1, 1));
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (step === 1) {
+      next();
+      return;
+    }
+    if (!step1Valid) {
+      setStep(1);
+      setAttemptedNext(true);
+      return;
+    }
     setSubmitted(true);
   };
 
@@ -183,10 +242,10 @@ export function Registration() {
             <Reveal delay={0.4}>
               <div className="mt-10 space-y-3">
                 {[
-                  "3 days of live, beginner-friendly AI training",
-                  "Build real AI chatbots, automations & agents",
-                  "Free certificate of completion",
-                  "Free 1:1 career counselling after the masterclass",
+                  "3 days of live, production-style AI training",
+                  "Build real AI agents, automations & multi-agent systems",
+                  "Free official certificate of completion",
+                  "Free 1:1 AI career counselling after the masterclass",
                 ].map((b) => (
                   <div key={b} className="flex items-center gap-3">
                     <span className="flex h-5 w-5 items-center justify-center rounded-full border border-accent/40 bg-accent/[0.12]">
@@ -284,6 +343,7 @@ export function Registration() {
                               onChange={update("name")}
                               autoComplete="name"
                               required
+                              error={attemptedNext ? step1Errors.name : ""}
                             />
                             <FloatingInput
                               id="email"
@@ -294,6 +354,7 @@ export function Registration() {
                               autoComplete="email"
                               inputMode="email"
                               required
+                              error={attemptedNext ? step1Errors.email : ""}
                             />
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                               <FloatingInput
@@ -305,6 +366,7 @@ export function Registration() {
                                 autoComplete="tel"
                                 inputMode="tel"
                                 required
+                                error={attemptedNext ? step1Errors.phone : ""}
                               />
                               <FloatingInput
                                 id="city"
@@ -312,8 +374,20 @@ export function Registration() {
                                 value={form.city}
                                 onChange={update("city")}
                                 autoComplete="address-level2"
+                                required
+                                error={attemptedNext ? step1Errors.city : ""}
                               />
                             </div>
+                            {attemptedNext && !step1Valid && (
+                              <motion.p
+                                initial={{ opacity: 0, y: -4 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="pt-1 text-[12px] text-red-300/90"
+                              >
+                                Please fill in all the fields to continue.
+                              </motion.p>
+                            )}
                           </motion.div>
                         )}
 

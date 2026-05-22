@@ -8,7 +8,7 @@ import { SplitText } from "@/components/ui/split-text";
 const testimonials = [
   {
     quote:
-      "I had zero coding background. By Day 2 I had built my own AI chatbot and a WhatsApp automation that actually worked. This masterclass made AI feel possible.",
+      "I had zero coding background. By Day 2 I had built my first AI agent, a WhatsApp automation and a local AI assistant — all live. This made modern Agentic AI feel actually buildable.",
     name: "Aanya Sharma",
     role: "Student · 3rd Year",
     initials: "AS",
@@ -16,7 +16,7 @@ const testimonials = [
   },
   {
     quote:
-      "The teaching is calm, clear and beginner-friendly. No jargon, no gatekeeping — just real builds I could reuse the same week at work.",
+      "The teaching is calm, clear and beginner-friendly — but the builds are real. I shipped production-style AI workflows to my team the same week.",
     name: "Rahul Verma",
     role: "Working Professional",
     initials: "RV",
@@ -24,7 +24,7 @@ const testimonials = [
   },
   {
     quote:
-      "Finally an AI masterclass that respects beginners.",
+      "Finally an Agentic AI masterclass that respects beginners.",
     name: "Sneha Iyer",
     role: "Career Switcher",
     initials: "SI",
@@ -32,7 +32,7 @@ const testimonials = [
   },
   {
     quote:
-      "I'm a freelancer, not a coder. After 3 days I was offering AI chatbot and automation services to my own clients. The ROI on a free class is unreal.",
+      "I'm a freelancer, not a coder. After 3 days I was offering AI agent, WhatsApp automation and multi-agent services to my own clients. The ROI on a free class is unreal.",
     name: "Mohammed Faraz",
     role: "Freelancer · Designer",
     initials: "MF",
@@ -40,7 +40,7 @@ const testimonials = [
   },
   {
     quote:
-      "Beginner-friendly, but never dumbed down. Loved it.",
+      "Production-style AI, taught beginner-friendly. Loved it.",
     name: "Ishita Rao",
     role: "Non-coder · Marketer",
     initials: "IR",
@@ -48,7 +48,7 @@ const testimonials = [
   },
   {
     quote:
-      "The career counselling at the end gave me a clear roadmap I didn't have before. I finally know what to learn next and where AI can take me.",
+      "The 1:1 career counselling gave me a real modern AI roadmap — freelancing paths, AI builder roles and exactly what to learn next. Game-changer.",
     name: "Kabir Singh",
     role: "Final Year · Engineering",
     initials: "KS",

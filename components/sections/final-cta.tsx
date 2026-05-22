@@ -55,9 +55,9 @@ export function FinalCTA() {
           transition={{ duration: 1, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="mx-auto mt-7 max-w-xl text-[16px] leading-[1.6] text-ink-muted sm:text-[17px]"
         >
-          3 days. Live online. Free. Beginner-friendly. Build real AI chatbots,
-          automations and agents with no coding required — and walk away with a
-          certificate and a clear AI career roadmap.
+          3 days. Live online. Free. Beginner-friendly. Build real AI agents,
+          autonomous workflows and production-style AI systems — with no coding —
+          and walk away with a certificate and a clear modern AI career roadmap.
         </motion.p>
 
         <motion.div

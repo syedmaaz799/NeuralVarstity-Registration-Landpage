@@ -11,11 +11,11 @@ import { Plus, Minus } from "@/components/ui/icons";
 const faqs = [
   {
     q: "Is this masterclass beginner friendly?",
-    a: "Yes — 100%. The entire masterclass is built for absolute beginners. Whether you're a student, a non-coder, a working professional or a career switcher, every session is designed so you can follow along and build alongside the mentor.",
+    a: "Yes — 100%. Every session is designed for absolute beginners. Whether you're a student, a non-coder, a working professional or a career switcher, you'll build real AI agents, automations and workflows live — at a pace built for first-time AI builders.",
   },
   {
     q: "Do I need any coding experience?",
-    a: "No. You don't need to know Python, JavaScript or any programming language. We use modern drag-and-drop AI tools, no-code builders and AI platforms so you can build real chatbots, automations and agents without writing a single line of code.",
+    a: "No. You don't need to know Python, JavaScript or any programming language. The entire masterclass uses modern no-code AI infrastructure — drag-and-drop AI builders, no-code agent platforms and modern AI dev tools — so you can ship production-style AI workflows without writing a single line of code.",
   },
   {
     q: "Is the masterclass really free?",
@@ -35,11 +35,11 @@ const faqs = [
   },
   {
     q: "Can students and non-coders join?",
-    a: "Absolutely. Students, freelancers, marketers, designers, working professionals and complete beginners are all welcome. This masterclass is designed to feel approachable for anyone — no technical background required.",
+    a: "Absolutely. Students, freelancers, marketers, designers, working professionals and complete beginners are all welcome. Modern no-code AI infrastructure means anyone can become an AI builder — no technical background, no engineering degree required.",
   },
   {
     q: "Will I get career guidance?",
-    a: "Yes — every registered learner gets free 1:1 career counselling after the masterclass. We'll help you understand AI career paths, what to learn next and how to position yourself for modern AI roles and opportunities.",
+    a: "Yes — every registered learner gets free 1:1 career counselling after the masterclass. We'll help you map real AI career paths — AI engineer, AI freelancer, AI product builder — and exactly what to learn next to position yourself in the modern AI economy.",
   },
 ];
 

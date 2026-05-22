@@ -18,63 +18,101 @@ type Workflow = {
 
 const workflows: Workflow[] = [
   {
-    id: "chatbot",
-    title: "AI Chatbot Workflow",
-    subtitle: "Custom AI chatbot, no coding",
+    id: "research",
+    title: "AI Research Assistant Workflow",
+    subtitle: "Multi-model research, retrieval & synthesis",
     description:
-      "Build an AI chatbot powered by OpenAI, Gemini or a local model — wired through a drag-and-drop builder, with custom knowledge and a friendly tone.",
+      "An autonomous AI agent that searches, reads and reasons across multiple AI models — retrieves knowledge, synthesizes findings and ships a structured research report. Built entirely with no-code AI infrastructure.",
     nodes: [
-      { id: "msg", label: "User Message", type: "input", tag: "Chat" },
-      { id: "intent", label: "Intent", type: "agent", tag: "LLM" },
-      { id: "kb", label: "Knowledge", type: "tool", tag: "Docs" },
-      { id: "model", label: "OpenAI / Gemini", type: "agent", tag: "Model" },
-      { id: "reply", label: "AI Reply", type: "output", tag: "Chat" },
+      { id: "q", label: "User Query", type: "input", tag: "User" },
+      { id: "router", label: "Multi-Model Router", type: "agent", tag: "LLMs" },
+      { id: "kb", label: "Knowledge Retrieval", type: "tool", tag: "RAG" },
+      { id: "synth", label: "AI Summary", type: "agent", tag: "Synth" },
+      { id: "out", label: "Final Response", type: "output", tag: "Report" },
     ],
     edges: [
-      ["msg", "intent"],
-      ["intent", "kb"],
-      ["kb", "model"],
-      ["model", "reply"],
+      ["q", "router"],
+      ["router", "kb"],
+      ["kb", "synth"],
+      ["synth", "out"],
     ],
   },
   {
     id: "whatsapp",
-    title: "WhatsApp Automation Workflow",
-    subtitle: "Reply, qualify and nurture on WhatsApp",
+    title: "WhatsApp AI Agent Workflow",
+    subtitle: "Lead qualification, auto-reply & CRM sync",
     description:
-      "Automate WhatsApp conversations end-to-end — auto-reply, qualify leads, send updates and follow up — all without writing a single line of code.",
+      "An autonomous WhatsApp agent that reads incoming leads, qualifies intent, sends contextual replies and logs structured data to your CRM — running 24/7 without a single human reply.",
     nodes: [
-      { id: "wa", label: "WhatsApp In", type: "input", tag: "Trigger" },
+      { id: "msg", label: "Lead Message", type: "input", tag: "Trigger" },
       { id: "agent", label: "AI Agent", type: "agent", tag: "Logic" },
-      { id: "sheet", label: "Google Sheets", type: "tool", tag: "Store" },
+      { id: "qual", label: "Qualification", type: "tool", tag: "Score" },
       { id: "reply", label: "Auto Reply", type: "agent", tag: "Send" },
-      { id: "done", label: "Lead Saved", type: "output", tag: "CRM" },
+      { id: "crm", label: "CRM Entry", type: "output", tag: "Saved" },
     ],
     edges: [
-      ["wa", "agent"],
-      ["agent", "sheet"],
-      ["agent", "reply"],
-      ["sheet", "done"],
+      ["msg", "agent"],
+      ["agent", "qual"],
+      ["qual", "reply"],
+      ["reply", "crm"],
     ],
   },
   {
-    id: "email",
-    title: "AI Email Automation Workflow",
-    subtitle: "Read, summarize and reply to emails",
+    id: "content",
+    title: "AI Content Automation Workflow",
+    subtitle: "Brief → research → ship, on autopilot",
     description:
-      "An AI assistant reads incoming emails, classifies them, drafts smart replies and schedules follow-ups — your personal inbox agent, on autopilot.",
+      "Drop in a topic or trigger — an AI agent researches, generates, formats and ships content to your destination of choice. Production-style content automation, on autopilot.",
     nodes: [
-      { id: "inbox", label: "Inbox", type: "input", tag: "Trigger" },
-      { id: "classify", label: "Classifier", type: "agent", tag: "LLM" },
-      { id: "summary", label: "Summarize", type: "tool", tag: "AI" },
-      { id: "draft", label: "Draft Reply", type: "agent", tag: "Compose" },
-      { id: "sent", label: "Send / Schedule", type: "output", tag: "Outbox" },
+      { id: "in", label: "Input Brief", type: "input", tag: "Trigger" },
+      { id: "agent", label: "AI Agent", type: "agent", tag: "Plan" },
+      { id: "gen", label: "Content Generation", type: "tool", tag: "Compose" },
+      { id: "fmt", label: "Formatting", type: "agent", tag: "Polish" },
+      { id: "out", label: "Final Output", type: "output", tag: "Published" },
     ],
     edges: [
-      ["inbox", "classify"],
-      ["classify", "summary"],
-      ["summary", "draft"],
-      ["draft", "sent"],
+      ["in", "agent"],
+      ["agent", "gen"],
+      ["gen", "fmt"],
+      ["fmt", "out"],
+    ],
+  },
+  {
+    id: "local",
+    title: "Local AI Workflow",
+    subtitle: "Private AI running on your own machine",
+    description:
+      "A 100% local AI workflow powered by Ollama. Run real AI assistants on your laptop with zero API costs, full privacy and complete control — the modern way to build private AI.",
+    nodes: [
+      { id: "in", label: "User Input", type: "input", tag: "Local" },
+      { id: "ollama", label: "Ollama Model", type: "agent", tag: "Local LLM" },
+      { id: "agent", label: "AI Agent", type: "agent", tag: "Reason" },
+      { id: "out", label: "Response", type: "output", tag: "Private" },
+    ],
+    edges: [
+      ["in", "ollama"],
+      ["ollama", "agent"],
+      ["agent", "out"],
+    ],
+  },
+  {
+    id: "multi",
+    title: "Multi-Agent Workflow",
+    subtitle: "Planner · Researcher · Writer in concert",
+    description:
+      "Three specialized AI agents working together — a planner breaks the goal down, a researcher pulls information, a writer assembles the output. This is how modern AI systems actually think.",
+    nodes: [
+      { id: "in", label: "User Goal", type: "input", tag: "Task" },
+      { id: "plan", label: "Planner Agent", type: "agent", tag: "Plan" },
+      { id: "res", label: "Research Agent", type: "agent", tag: "Research" },
+      { id: "write", label: "Writer Agent", type: "agent", tag: "Compose" },
+      { id: "out", label: "Final Output", type: "output", tag: "Delivered" },
+    ],
+    edges: [
+      ["in", "plan"],
+      ["plan", "res"],
+      ["res", "write"],
+      ["write", "out"],
     ],
   },
 ];
@@ -178,7 +216,7 @@ export function Workflows() {
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <Reveal>
-            <Eyebrow variant="accent">Live Workflows</Eyebrow>
+            <Eyebrow variant="accent">Production-Style AI Workflows</Eyebrow>
           </Reveal>
           <div className="mt-6">
             <SplitText
@@ -195,9 +233,10 @@ export function Workflows() {
           </div>
           <Reveal delay={0.3}>
             <p className="mt-7 max-w-md text-[15px] leading-[1.65] text-ink-muted">
-              These are real, beginner-friendly AI workflows — chatbots, WhatsApp
-              automations and AI email assistants — that you'll build live during
-              the 3-day masterclass and reuse the same day.
+              The exact production-style AI workflows you'll architect and ship
+              live — from autonomous research agents to WhatsApp AI systems and
+              multi-agent orchestration. Built with no-code AI infrastructure,
+              the kind real startups deploy today.
             </p>
           </Reveal>
 
